@@ -26,15 +26,12 @@ public:
 		vector<string> data = readFile("samples/" + file_name);
 
 		_image_format = data[0];
-		cout << _image_format << endl;
 
 		istringstream width_height{ data[1] };
 		width_height >> _width;
 		width_height >> _height;
-		cout << _width << " " << _height << endl;
 
 		_max_pixel_value = stoi(data[2]);
-		cout << _max_pixel_value << endl;
 
 		for (int i = 3; i < data.size(); i++)
 		{
