@@ -16,7 +16,7 @@ int main(int argc, char* argv[])
 	char switchint;
 	bool stop_loop = false;
 
-	while (stop_loop = false)
+	while (stop_loop == false)
 	{
 		cout << "Enter a File Name to Input: ";
 		cin >> input_file;
@@ -104,6 +104,9 @@ int main(int argc, char* argv[])
 			break;
 		}
 
+		cout << "------------------------------------" << endl;
+		cout << endl;
+
 		cout << "Would you like to continue? (Y/n)" << endl;
 		cin >> continues;
 		cout << endl;
@@ -124,5 +127,9 @@ int main(int argc, char* argv[])
 			cout << "Ending Program....." << endl;
 		}
 	}
+
+	cout << "------------------------------------" << endl;
+	cout << endl;
+
 	return 0;
 }
