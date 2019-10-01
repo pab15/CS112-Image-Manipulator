@@ -36,6 +36,7 @@ int main(int argc, char* argv[])
 		cout << "4. Negate Red" << endl;
 		cout << "5. Negate Green" << endl;
 		cout << "6. Negate Blue" << endl;
+		cout << "7. Grayscale" << endl;
 		cout << "t. test all" << endl;
 		cout << endl;
 		cin >> switchint;
@@ -49,12 +50,14 @@ int main(int argc, char* argv[])
 		PpmClass remove_blue{};
 		PpmClass negate_red{};
 		PpmClass negate_blue{};
+		PpmClass grayscale{};
 		PpmClass test{};
 		PpmClass test2{};
 		PpmClass test3{};
 		PpmClass test4{};
 		PpmClass test5{};
 		PpmClass test6{};
+		PpmClass test7{};
 
 		switch (switchint)
 		{
@@ -82,6 +85,10 @@ int main(int argc, char* argv[])
 			negate_blue.negateBlue(input_file, output_file);
 			break;
 
+		case '7':
+			grayscale.grayScale(input_file, output_file);
+			break;
+
 		case 't':
 		case 'T':
 			test.removeRed("tinypix.ppm", "testRR.ppm");
@@ -96,6 +103,7 @@ int main(int argc, char* argv[])
 			cout << endl;
 			test6.negateBlue("tinypix.ppm", "testNB.ppm");
 			cout << endl;
+			test7.grayScale("tinypix.ppm", "testGS.ppm");
 			break;
 
 		default:

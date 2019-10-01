@@ -83,7 +83,7 @@ public:
 			}
 		}
 
-		cout << "Removing All Red..." << endl << endl;
+		cout << "Removing All Red....." << endl << endl;
 		destination.close();
 	}
 
@@ -121,7 +121,7 @@ public:
 			}
 		}
 
-		cout << "Removing All Green..." << endl << endl;
+		cout << "Removing All Green....." << endl << endl;
 		destination.close();
 	}
 
@@ -159,7 +159,7 @@ public:
 			}
 		}
 
-		cout << "Removing All Blue..." << endl << endl;
+		cout << "Removing All Blue....." << endl << endl;
 		destination.close();
 	}
 
@@ -198,7 +198,7 @@ public:
 			}
 		}
 
-		cout << "Negating All Red..." << endl << endl;
+		cout << "Negating All Red....." << endl << endl;
 		destination.close();
 	}
 
@@ -236,7 +236,7 @@ public:
 			}
 		}
 
-		cout << "Negating All Green..." << endl << endl;
+		cout << "Negating All Green....." << endl << endl;
 		destination.close();
 	}
 
@@ -274,7 +274,35 @@ public:
 			}
 		}
 
-		cout << "Negating All Blue..." << endl << endl;
+		cout << "Negating All Blue....." << endl << endl;
+		destination.close();
+	}
+
+	void grayScale(string input_file, string output_file)
+	{
+		setPpmObjects(input_file);
+		ofstream destination;
+		destination.open(output_file);
+
+		destination << _image_format << endl;
+		destination << _width << " " << _height << endl;
+		destination << _max_pixel_value << endl;
+
+		int avg_triplet = 0;
+		int count = 0;
+
+		for (int i = 2; i < _rgb_data.size(); i += 3)
+		{
+			avg_triplet = ((_rgb_data[i] + _rgb_data[i - 1] + _rgb_data[i - 2]) / 3);
+			destination << avg_triplet << " " << avg_triplet << " " << avg_triplet << " ";
+			count++;
+			if (count % 4 == 0)
+			{
+				destination << endl;
+			}
+		}
+
+		cout << "Grayscaling All Pixels....." << endl << endl;
 		destination.close();
 	}
 

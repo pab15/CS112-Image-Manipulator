@@ -47,15 +47,6 @@
     <None Include="samples\tinypix.ppm">
       <Filter>Resource Files\samples</Filter>
     </None>
-    <None Include="output4.ppm">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="output5.ppm">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="output6.ppm">
-      <Filter>Resource Files</Filter>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FileHelpers.h">
