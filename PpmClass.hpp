@@ -48,6 +48,33 @@ public:
 		}
 	}
 
+	void viewPpmContents(string input_file)
+	{
+		setPpmObjects(input_file);
+		cout << "------------------------------------" << endl;
+		cout << input_file + " contents:" << endl;
+		cout << "------------------------------------" << endl;
+		cout << endl;
+		cout << _image_format << endl;
+		cout << _width << " " << _height << endl;
+		cout << _max_pixel_value << endl;
+
+		int count = 0;
+		for (int i = 0; i < _rgb_data.size(); i++)
+		{
+			cout << _rgb_data[i] << " ";
+			count++;
+			if (count % 12 == 0)
+			{
+				cout << endl;
+			}
+		}
+
+		cout << endl;
+		cout << "------------------------------------" << endl;
+		cout << endl;
+	}
+
 	void removeRed(string input_file, string output_file)
 	{
 		setPpmObjects(input_file);
