@@ -48,7 +48,6 @@ int main(int argc, char* argv[])
 		PpmClass remove_green{};
 		PpmClass remove_blue{};
 		PpmClass negate_red{};
-		PpmClass negate_red{};
 		PpmClass negate_blue{};
 		PpmClass test{};
 		PpmClass test2{};
