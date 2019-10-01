@@ -4,7 +4,7 @@
 
 #include <iostream>
 #include <fstream>
-#include <fstream>
+#include <sstream>
 #include <string>
 #include <vector>
 #include "FileHelpers.h"
@@ -334,9 +334,5 @@ public:
 	}
 
 };
-
-
-
-
 
 #endif // !PPM_CLASS_HPP
