@@ -21,7 +21,7 @@ private:
 	vector<int> _rgb_data{};
 
 public:
-	void removeRed(string file_name)
+	void setPpmObjects(string file_name)
 	{
 		vector<string> data = readFile("samples/" + file_name);
 
@@ -46,9 +46,242 @@ public:
 				}
 			}
 		}
-
-		
 	}
+
+	void removeRed(string input_file, string output_file)
+	{
+		setPpmObjects(input_file);
+		ofstream destination;
+		destination.open(output_file);
+
+		destination << _image_format << endl;
+		destination << _width << " " << _height << endl;
+		destination << _max_pixel_value << endl;
+
+		int count = 0;
+
+		for (int i = 0; i < _rgb_data.size(); i++)
+		{
+			
+			if (i == 0 || i % 3 == 0)
+			{
+				destination << 0 << " ";
+				count++;
+				if (count % 12 == 0)
+				{
+					destination << endl;
+				}
+			}
+			else
+			{
+				destination << _rgb_data[i] << " ";
+				count++;
+				if (count % 12 == 0)
+				{
+					destination << endl;
+				}
+			}
+		}
+
+		cout << "Removing All Red..." << endl << endl;
+		destination.close();
+	}
+
+	void removeGreen(string input_file, string output_file)
+	{
+		setPpmObjects(input_file);
+		ofstream destination;
+		destination.open(output_file);
+
+		destination << _image_format << endl;
+		destination << _width << " " << _height << endl;
+		destination << _max_pixel_value << endl;
+
+		int count = 0;
+
+		for (int i = 0; i < _rgb_data.size(); i++)
+		{
+			if (i == 1 || (i - 1) % 3 == 0)
+			{
+				destination << 0 << " ";
+				count++;
+				if (count % 12 == 0)
+				{
+					destination << endl;
+				}
+			}
+			else
+			{
+				destination << _rgb_data[i] << " ";
+				count++;
+				if (count % 12 == 0)
+				{
+					destination << endl;
+				}
+			}
+		}
+
+		cout << "Removing All Green..." << endl << endl;
+		destination.close();
+	}
+
+	void removeBlue(string input_file, string output_file)
+	{
+		setPpmObjects(input_file);
+		ofstream destination;
+		destination.open(output_file);
+
+		destination << _image_format << endl;
+		destination << _width << " " << _height << endl;
+		destination << _max_pixel_value << endl;
+
+		int count = 0;
+
+		for (int i = 0; i < _rgb_data.size(); i++)
+		{
+			if (i == 2 || (i - 2) % 3 == 0)
+			{
+				destination << 0 << " ";
+				count++;
+				if (count % 12 == 0)
+				{
+					destination << endl;
+				}
+			}
+			else
+			{
+				destination << _rgb_data[i] << " ";
+				count++;
+				if (count % 12 == 0)
+				{
+					destination << endl;
+				}
+			}
+		}
+
+		cout << "Removing All Blue..." << endl << endl;
+		destination.close();
+	}
+
+	void negateRed(string input_file, string output_file)
+	{
+		setPpmObjects(input_file);
+		ofstream destination;
+		destination.open(output_file);
+
+		destination << _image_format << endl;
+		destination << _width << " " << _height << endl;
+		destination << _max_pixel_value << endl;
+
+		int count = 0;
+
+		for (int i = 0; i < _rgb_data.size(); i++)
+		{
+
+			if (i == 0 || i % 3 == 0)
+			{
+				destination << 255 - _rgb_data[i] << " ";
+				count++;
+				if (count % 12 == 0)
+				{
+					destination << endl;
+				}
+			}
+			else
+			{
+				destination << _rgb_data[i] << " ";
+				count++;
+				if (count % 12 == 0)
+				{
+					destination << endl;
+				}
+			}
+		}
+
+		cout << "Negating All Red..." << endl << endl;
+		destination.close();
+	}
+
+	void negateGreen(string input_file, string output_file)
+	{
+		setPpmObjects(input_file);
+		ofstream destination;
+		destination.open(output_file);
+
+		destination << _image_format << endl;
+		destination << _width << " " << _height << endl;
+		destination << _max_pixel_value << endl;
+
+		int count = 0;
+
+		for (int i = 0; i < _rgb_data.size(); i++)
+		{
+			if (i == 1 || (i - 1) % 3 == 0)
+			{
+				destination << 255 - _rgb_data[i] << " ";
+				count++;
+				if (count % 12 == 0)
+				{
+					destination << endl;
+				}
+			}
+			else
+			{
+				destination << _rgb_data[i] << " ";
+				count++;
+				if (count % 12 == 0)
+				{
+					destination << endl;
+				}
+			}
+		}
+
+		cout << "Negating All Green..." << endl << endl;
+		destination.close();
+	}
+
+	void negateBlue(string input_file, string output_file)
+	{
+		setPpmObjects(input_file);
+		ofstream destination;
+		destination.open(output_file);
+
+		destination << _image_format << endl;
+		destination << _width << " " << _height << endl;
+		destination << _max_pixel_value << endl;
+
+		int count = 0;
+
+		for (int i = 0; i < _rgb_data.size(); i++)
+		{
+			if (i == 2 || (i - 2) % 3 == 0)
+			{
+				destination << 255 - _rgb_data[i] << " ";
+				count++;
+				if (count % 12 == 0)
+				{
+					destination << endl;
+				}
+			}
+			else
+			{
+				destination << _rgb_data[i] << " ";
+				count++;
+				if (count % 12 == 0)
+				{
+					destination << endl;
+				}
+			}
+		}
+
+		cout << "Negating All Blue..." << endl << endl;
+		destination.close();
+	}
+
 };
+
+
+
+
 
 #endif // !PPM_CLASS_HPP
