@@ -126,20 +126,24 @@ int main(int argc, char* argv[])
 		cin >> continues;
 		cout << endl;
 
-		if (continues == 'n' || continues == 'N')
+		switch(continues)
 		{
-			stop_loop = true;
-			cout << "Ending Program....." << endl;
-		}
-		else if (continues == 'y' || continues == 'Y')
-		{
-			stop_loop = false;
-		}
-		else
-		{
-			stop_loop = true;
-			cout << "Error! Invalid Input." << endl;
-			cout << "Ending Program....." << endl;
+			case 'n':
+			case 'N':
+				stop_loop = true;
+				cout << "Ending Program....." << endl;
+				break;
+
+			case 'y':
+			case 'Y':
+				stop_loop = false;
+				break;
+
+			default:
+				stop_loop = true;
+				cout << "Error! Invalid Input." << endl;
+				cout << "Ending Program....." << endl;
+				break;
 		}
 	}
 
