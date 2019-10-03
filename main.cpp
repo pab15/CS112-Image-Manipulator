@@ -12,8 +12,8 @@ int main(int argc, char* argv[])
 {
 	string input_file;
 	string output_file;
-	char continues = 'y';
-	char switchint;
+	char continues;
+	char switchchar;
 	bool stop_loop = false;
 
 	while (stop_loop == false)
@@ -40,7 +40,7 @@ int main(int argc, char* argv[])
 		cout << "v. View PPM file contents" << endl;
 		cout << "t. test all" << endl;
 		cout << endl;
-		cin >> switchint;
+		cin >> switchchar;
 		cout << endl;
 
 		cout << "------------------------------------" << endl;
@@ -61,7 +61,7 @@ int main(int argc, char* argv[])
 		PpmClass test6{};
 		PpmClass test7{};
 
-		switch (switchint)
+		switch (switchchar)
 		{
 		case '1':
 			remove_red.removeRed(input_file, output_file);
