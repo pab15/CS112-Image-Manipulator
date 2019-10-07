@@ -98,19 +98,19 @@ int main(int argc, char* argv[])
 		
 		case 't':
 		case 'T':
-			test.removeRed("tinypix.ppm", "testRR.ppm");
+			test.removeRed("samples/tinypix.ppm", "testRR.ppm");
 			cout << endl;
-			test2.removeGreen("tinypix.ppm", "testRG.ppm");
+			test2.removeGreen("samples/tinypix.ppm", "testRG.ppm");
 			cout << endl;
-			test3.removeBlue("tinypix.ppm", "testRB.ppm");
+			test3.removeBlue("samples/tinypix.ppm", "testRB.ppm");
 			cout << endl;
-			test4.negateRed("tinypix.ppm", "testNR.ppm");
+			test4.negateRed("samples/tinypix.ppm", "testNR.ppm");
 			cout << endl;
-			test5.negateGreen("tinypix.ppm", "testNG.ppm");
+			test5.negateGreen("samples/tinypix.ppm", "testNG.ppm");
 			cout << endl;
-			test6.negateBlue("tinypix.ppm", "testNB.ppm");
+			test6.negateBlue("samples/tinypix.ppm", "testNB.ppm");
 			cout << endl;
-			test7.grayScale("tinypix.ppm", "testGS.ppm");
+			test7.grayScale("samples/tinypix.ppm", "testGS.ppm");
 			break;
 
 		default:
