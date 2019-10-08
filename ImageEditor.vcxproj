@@ -134,13 +134,6 @@
     <None Include="samples\smiley.ppm" />
     <None Include="samples\squares.ppm" />
     <None Include="samples\tinypix.ppm" />
-    <None Include="testGS.ppm" />
-    <None Include="testNB.ppm" />
-    <None Include="testNG.ppm" />
-    <None Include="testNR.ppm" />
-    <None Include="testRB.ppm" />
-    <None Include="testRG.ppm" />
-    <None Include="testRR.ppm" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FileHelpers.h" />

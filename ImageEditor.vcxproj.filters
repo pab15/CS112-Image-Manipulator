@@ -47,27 +47,6 @@
     <None Include="samples\tinypix.ppm">
       <Filter>Resource Files\samples</Filter>
     </None>
-    <None Include="testGS.ppm">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="testNB.ppm">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="testNG.ppm">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="testNR.ppm">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="testRB.ppm">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="testRG.ppm">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="testRR.ppm">
-      <Filter>Resource Files</Filter>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FileHelpers.h">

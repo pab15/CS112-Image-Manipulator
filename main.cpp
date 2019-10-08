@@ -46,13 +46,7 @@ int main(int argc, char* argv[])
 		cout << "------------------------------------" << endl;
 		cout << endl;
 
-		PpmClass remove_red{};
-		PpmClass remove_green{};
-		PpmClass remove_blue{};
-		PpmClass negate_red{};
-		PpmClass negate_blue{};
-		PpmClass grayscale{};
-		PpmClass view_file{};
+		PpmClass doc{};
 		PpmClass test{};
 		PpmClass test2{};
 		PpmClass test3{};
@@ -64,36 +58,36 @@ int main(int argc, char* argv[])
 		switch (switchchar)
 		{
 		case '1':
-			remove_red.removeRed(input_file, output_file);
+			doc.removeRed(input_file, output_file);
 			break;
 
 		case '2':
-			remove_green.removeGreen(input_file, output_file);
+			doc.removeGreen(input_file, output_file);
 			break;
 
 		case '3':
-			remove_blue.removeBlue(input_file, output_file);
+			doc.removeBlue(input_file, output_file);
 			break;
 
 		case '4':
-			negate_red.negateRed(input_file, output_file);
+			doc.negateRed(input_file, output_file);
 			break;
 
 		case '5':
-			negate_red.negateGreen(input_file, output_file);
+			doc.negateGreen(input_file, output_file);
 			break;
 
 		case '6':
-			negate_blue.negateBlue(input_file, output_file);
+			doc.negateBlue(input_file, output_file);
 			break;
 
 		case '7':
-			grayscale.grayScale(input_file, output_file);
+			doc.grayScale(input_file, output_file);
 			break;
 
 		case 'v':
 		case 'V':
-			view_file.viewPpmContents(input_file);
+			doc.viewPpmContents(input_file);
 			break;
 		
 		case 't':
@@ -125,6 +119,8 @@ int main(int argc, char* argv[])
 		cout << "Would you like to continue? (Y/n)" << endl;
 		cin >> continues;
 		cout << endl;
+		cout << "------------------------------------" << endl;
+		cout << endl;
 
 		switch(continues)
 		{
@@ -138,6 +134,8 @@ int main(int argc, char* argv[])
 			case 'Y':
 				stop_loop = false;
 				break;
+				cout << "------------------------------------" << endl;
+				cout << endl;
 
 			default:
 				stop_loop = true;

@@ -13,7 +13,7 @@ using namespace std;
 class PpmClass
 {
 private:
-	string file_name;
+	string _file_name;
 	string _image_format;
 	int _width = 0;
 	int _height = 0;
@@ -21,9 +21,41 @@ private:
 	vector<int> _rgb_data{};
 
 public:
+	string getImageFormat() const
+	{
+		return _image_format;
+	}
+
+	int getWidth() const
+	{
+		return _width;
+	}
+
+	int getHeight() const
+	{
+		return _height;
+	}
+
+	int getMaxPix() const
+	{
+		return _max_pixel_value;
+	}
+
+	void setImageFormat(string image_format)
+	{
+		_image_format = image_format;
+	}
+
+	void setFileName(const string& file_name)
+	{
+		_file_name = file_name;
+	}
+
 	void openPpmDoc(string file_name)
 	{
 		vector<string> data = readFile(file_name);
+
+		_file_name = file_name;
 
 		_image_format = data[0];
 
@@ -46,26 +78,6 @@ public:
 				}
 			}
 		}
-	}
-
-	string getImageFormat() const
-	{
-		return _image_format;
-	}
-
-	int getWidth() const
-	{
-		return _width;
-	}
-
-	int getHeight() const
-	{
-		return _height;
-	}
-
-	int getMaxPix() const
-	{
-		return _max_pixel_value;
 	}
 
 	void viewPpmContents(string input_file)
@@ -315,7 +327,7 @@ public:
 
 		for (int i = 2; i < _rgb_data.size(); i += 3)
 		{
-			avg_triplet = ((_rgb_data[i] + _rgb_data[i - 1] + _rgb_data[i - 2]) / 3);
+			avg_triplet = ((_rgb_data[i] + _rgb_data[(i - 1)] + _rgb_data[(i - 2)]) / 3);
 			destination << avg_triplet << " " << avg_triplet << " " << avg_triplet << " ";
 			count++;
 			if (count % 4 == 0)
