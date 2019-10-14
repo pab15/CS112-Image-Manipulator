@@ -21,6 +21,35 @@ private:
 	vector<int> _rgb_data{};
 
 public:
+	void openPpmDoc(string file_name)
+	{
+		vector<string> data = readFile(file_name);
+
+		_file_name = file_name;
+
+		_image_format = data[0];
+
+		istringstream width_height{ data[1] };
+		width_height >> _width;
+		width_height >> _height;
+
+		_max_pixel_value = stoi(data[2]);
+
+		for (int i = 3; i < data.size(); i++)
+		{
+			istringstream numbers_str{ data[i] };
+			while (numbers_str.good() == true)
+			{
+				string temp;
+				getline(numbers_str, temp, ' ');
+				if (temp.length() > 0 && temp != " ")
+				{
+					_rgb_data.push_back(stoi(temp));
+				}
+			}
+		}
+	}
+
 	string getImageFormat() const
 	{
 		return _image_format;
@@ -49,35 +78,6 @@ public:
 	void setFileName(const string& file_name)
 	{
 		_file_name = file_name;
-	}
-
-	void openPpmDoc(string file_name)
-	{
-		vector<string> data = readFile(file_name);
-
-		_file_name = file_name;
-
-		_image_format = data[0];
-
-		istringstream width_height{ data[1] };
-		width_height >> _width;
-		width_height >> _height;
-
-		_max_pixel_value = stoi(data[2]);
-
-		for (int i = 3; i < data.size(); i++)
-		{
-			istringstream numbers_str{ data[i] };
-			while (numbers_str.good() == true)
-			{
-				string temp;
-				getline(numbers_str, temp, ' ');
-				if (temp.length() > 0 && temp != " ")
-				{
-					_rgb_data.push_back(stoi(temp));
-				}
-			}
-		}
 	}
 
 	void viewPpmContents(string input_file)
