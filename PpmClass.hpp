@@ -384,7 +384,7 @@ public:
 		}
 	}
 
-	void highContrast(string input_file, string output_file);
+	void highContrast(string input_file, string output_file)
 	{
 		openPpmDoc(input_file);
 		ofstream destination;

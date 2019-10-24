@@ -88,6 +88,7 @@ int main(int argc, char* argv[])
 			break;
 
 		case '8':
+			doc.randomNoise(input_file, output_file);
 			break;
 
 		case '9':
