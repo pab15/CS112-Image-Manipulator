@@ -1,4 +1,4 @@
-#pragma once
+//#pragma once
 #ifndef PPM_CLASS_HPP
 #define PPM_CLASS_HPP
 
@@ -355,7 +355,7 @@ public:
 		for (int i = 0; i < _rgb_data.size(); i++)
 		{
 			srand (time(NULL));
-			int random_number = rand() % 10 - 10;
+			int random_number = (rand() % 20) - 10;
 			if (_rgb_data[i] + random_number > 255)
 			{
 				if (i % (3 * _width) == 0)
