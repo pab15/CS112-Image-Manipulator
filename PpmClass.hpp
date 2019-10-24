@@ -382,6 +382,8 @@ public:
 			}
 			
 		}
+		cout << "Applying Random Noise....." << endl << endl;
+		destination.close();
 	}
 
 	void highContrast(string input_file, string output_file)

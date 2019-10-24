@@ -41,21 +41,39 @@ int main(int argc, char* argv[])
 		cout << "9. High Contrast" << endl;
 		cout << "v. View PPM file contents" << endl;
 		cout << "t. test all" << endl;
+		cout << "q. Quit Program" << endl;
 		cout << endl;
-		cin >> switch_char;
 		cout << endl;
 
 		cout << "------------------------------------" << endl;
 		cout << endl;
 
 		PpmClass doc{};
+		do
+		{
+			int count = 1;
+			if (count == 1)
+			{
+				cout << "Selection: ";
+				cin >> switch_char;
+				cout << endl;
+				menuSwitch(switch_char, input_file, output_file, doc);
+			}
+			else 
+			{
+				cout << "Selection: ";
+				cin >> switch_char;
+				cout << endl;
+				menuSwitch(switch_char, output_file, output_file, doc);
+			}
+			
+		}while(switch_char != 'q' || switch_char != 'Q');
 		
-		menuSwitch(switch_char, input_file, output_file, doc);
 
 		cout << "------------------------------------" << endl;
 		cout << endl;
 
-		cout << "Would you like to continue? (Y/n)" << endl;
+		cout << "Would you like to continue with a New File? (Y/n)" << endl;
 		cin >> continues;
 		cout << endl;
 		cout << "------------------------------------" << endl;
