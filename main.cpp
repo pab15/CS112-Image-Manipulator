@@ -37,6 +37,8 @@ int main(int argc, char* argv[])
 		cout << "5. Negate Green" << endl;
 		cout << "6. Negate Blue" << endl;
 		cout << "7. Grayscale" << endl;
+		cout << "8. Random Noise" << endl;
+		cout << "9. High Contrast" << endl;
 		cout << "v. View PPM file contents" << endl;
 		cout << "t. test all" << endl;
 		cout << endl;
@@ -83,6 +85,13 @@ int main(int argc, char* argv[])
 
 		case '7':
 			doc.grayScale(input_file, output_file);
+			break;
+
+		case '8':
+			break;
+
+		case '9':
+			doc.highContrast(input_file, output_file);
 			break;
 
 		case 'v':

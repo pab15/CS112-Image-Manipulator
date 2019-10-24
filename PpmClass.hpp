@@ -1,5 +1,4 @@
 #pragma once
-#pragma once
 #ifndef PPM_CLASS_HPP
 #define PPM_CLASS_HPP
 
@@ -8,6 +7,8 @@
 #include <sstream>
 #include <string>
 #include <vector>
+#include <cmath>
+#include <ctime>
 #include "FileHelpers.h"
 using namespace std;
 
@@ -338,6 +339,85 @@ public:
 		}
 
 		cout << "Grayscaling All Pixels....." << endl << endl;
+		destination.close();
+	}
+
+	void randomNoise(string input_file, string output_file)
+	{
+		openPpmDoc(input_file);
+		ofstream destination;
+		destination.open(output_file);
+
+		destination << _image_format << endl;
+		destination << _width << " " << _height << endl;
+		destination << _max_pixel_value << endl;
+
+		for (int i = 0; i < _rgb_data.size(); i++)
+		{
+			srand (time(NULL));
+			int random_number = rand() % 10 - 10;
+			if (_rgb_data[i] + random_number > 255)
+			{
+				if (i % (3 * _width) == 0)
+				{
+					destination << endl;
+				}
+				destination << 255 << " ";
+			} 
+			else if (_rgb_data[i] - random_number > 0)
+			{
+				if (i % (3 * _width) == 0)
+				{
+					destination << endl;
+				}
+				destination << 0 << " ";
+			}
+			else
+			{
+				if (i % (3 * _width) == 0)
+				{
+					destination << endl;
+				}
+				destination << _rgb_data[i] + random_number << " ";
+			}
+			
+		}
+	}
+
+	void highContrast(string input_file, string output_file);
+	{
+		openPpmDoc(input_file);
+		ofstream destination;
+		destination.open(output_file);
+
+		destination << _image_format << endl;
+		destination << _width << " " << _height << endl;
+		destination << _max_pixel_value << endl;
+		for (int i = 0; i < _rgb_data.size(); i++)
+		{
+			if (_rgb_data[i] > (255 / 2))
+			{
+				if (i % (3 * _width) == 0)
+				{
+					destination << endl;
+				}
+				destination << 255 << " ";
+			}
+			else if (_rgb_data[i] < (255 / 2))
+			{
+				if (i % (3 * _width) == 0)
+				{
+					destination << endl;
+				}
+				destination << 0 << " ";
+			}
+			else
+			{
+				cout << "Invalid Pixel Value" << endl;
+			}
+		}
+
+		cout << "Applying High Contrast....." << endl << endl;
 		destination.close();
 	}
 
