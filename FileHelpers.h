@@ -9,5 +9,7 @@ using namespace std;
 
 vector<string> readFile(ifstream& some_file);
 vector<string> readFile(const string& file_name);
+void countinueFuction(char c);
+void menuSwitch(char c);
 
 #endif
