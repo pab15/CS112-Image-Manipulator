@@ -13,10 +13,10 @@ int main(int argc, char* argv[])
 	string input_file;
 	string output_file;
 	char continues;
-	char switch_char;
-	bool cont_loop = false;
+	char switchchar;
+	bool stop_loop = false;
 
-	while (cont_loop == true)
+	while (stop_loop == false)
 	{
 		cout << "Enter a File Name to Input: ";
 		cin >> input_file;
@@ -40,46 +40,132 @@ int main(int argc, char* argv[])
 		cout << "8. Random Noise" << endl;
 		cout << "9. High Contrast" << endl;
 		cout << "v. View PPM file contents" << endl;
-		cout << "t. test all" << endl;
-		cout << "q. Quit Program" << endl;
+		cout << "t. Test All" << endl;
+		cout << "q. Quit" << endl;
 		cout << endl;
+		cin >> switchchar;
 		cout << endl;
 
 		cout << "------------------------------------" << endl;
 		cout << endl;
 
 		PpmClass doc{};
-		do
+		PpmClass test{};
+		PpmClass test2{};
+		PpmClass test3{};
+		PpmClass test4{};
+		PpmClass test5{};
+		PpmClass test6{};
+		PpmClass test7{};
+		PpmClass test8{};
+		PpmClass test9{};
+
+		switch (switchchar)
 		{
-			int count = 1;
-			if (count == 1)
-			{
-				cout << "Selection: ";
-				cin >> switch_char;
-				cout << endl;
-				menuSwitch(switch_char, input_file, output_file, doc);
-			}
-			else 
-			{
-				cout << "Selection: ";
-				cin >> switch_char;
-				cout << endl;
-				menuSwitch(switch_char, output_file, output_file, doc);
-			}
-			
-		}while(switch_char != 'q' || switch_char != 'Q');
+		case '1':
+			doc.removeRed(input_file, output_file);
+			break;
+
+		case '2':
+			doc.removeGreen(input_file, output_file);
+			break;
+
+		case '3':
+			doc.removeBlue(input_file, output_file);
+			break;
+
+		case '4':
+			doc.negateRed(input_file, output_file);
+			break;
+
+		case '5':
+			doc.negateGreen(input_file, output_file);
+			break;
+
+		case '6':
+			doc.negateBlue(input_file, output_file);
+			break;
+
+		case '7':
+			doc.grayScale(input_file, output_file);
+			break;
+
+		case '8':
+			doc.randomNoise(input_file, output_file);
+			break;
 		
+		case '9':
+			doc.highContrast(input_file, output_file);
+			break;
+
+		case 'v':
+		case 'V':
+			doc.viewPpmContents(input_file);
+			break;
+		
+		case 't':
+		case 'T':
+			test.removeRed(input_file, "testRR.ppm");
+			cout << endl;
+			test2.removeGreen(input_file, "testRG.ppm");
+			cout << endl;
+			test3.removeBlue(input_file, "testRB.ppm");
+			cout << endl;
+			test4.negateRed(input_file, "testNR.ppm");
+			cout << endl;
+			test5.negateGreen(input_file, "testNG.ppm");
+			cout << endl;
+			test6.negateBlue(input_file, "testNB.ppm");
+			cout << endl;
+			test7.grayScale(input_file, "testGS.ppm");
+			cout << endl;
+			test8.randomNoise(input_file, "testGS.ppm");
+			cout << endl;
+			test9.highContrast(input_file, "testGS.ppm");
+			cout << endl;
+			break;
+
+		case 'q':
+		case 'Q':
+			cout << "Ending Effect Chain....." << endl;
+			cout << endl;
+			break;
+		default:
+			cout << "Error! Invalid Selection." << endl;
+			cout << endl;
+			break;
+		}
 
 		cout << "------------------------------------" << endl;
 		cout << endl;
 
-		cout << "Would you like to continue with a New File? (Y/n)" << endl;
+		cout << "Would you like to continue? (Y/n)" << endl;
 		cin >> continues;
 		cout << endl;
 		cout << "------------------------------------" << endl;
 		cout << endl;
 
-		cont_loop = countinueFuction(continues);
+		switch(continues)
+		{
+			case 'n':
+			case 'N':
+				stop_loop = true;
+				cout << "Ending Program....." << endl;
+				break;
+
+			case 'y':
+			case 'Y':
+				stop_loop = false;
+				break;
+				cout << "------------------------------------" << endl;
+				cout << endl;
+
+			default:
+				stop_loop = true;
+				cout << "Error! Invalid Input." << endl;
+				cout << "Ending Program....." << endl;
+				break;
+		}
 	}
 
 	cout << "------------------------------------" << endl;

@@ -1,4 +1,4 @@
-//#pragma once
+#pragma once
 #ifndef PPM_CLASS_HPP
 #define PPM_CLASS_HPP
 
@@ -7,7 +7,6 @@
 #include <sstream>
 #include <string>
 #include <vector>
-#include <cmath>
 #include <ctime>
 #include "FileHelpers.h"
 using namespace std;
@@ -100,7 +99,7 @@ public:
 				cout << endl;
 			}
 			cout << _rgb_data[i] << " ";
-
+			
 		}
 
 		cout << endl;
@@ -120,7 +119,7 @@ public:
 
 		for (int i = 0; i < _rgb_data.size(); i++)
 		{
-
+			
 			if (i == 0 || i % 3 == 0)
 			{
 				if (i % (3 * _width) == 0)
@@ -351,11 +350,12 @@ public:
 		destination << _image_format << endl;
 		destination << _width << " " << _height << endl;
 		destination << _max_pixel_value << endl;
-
+		srand(time(NULL));
 		for (int i = 0; i < _rgb_data.size(); i++)
 		{
-			srand (time(NULL));
-			int random_number = (rand() % 20) - 10;
+			
+			int random = (rand() % 20);
+			int random_number = random - 10;
 			if (_rgb_data[i] + random_number > 255)
 			{
 				if (i % (3 * _width) == 0)
@@ -363,7 +363,7 @@ public:
 					destination << endl;
 				}
 				destination << 255 << " ";
-			} 
+			}
 			else if (_rgb_data[i] - random_number > 0)
 			{
 				if (i % (3 * _width) == 0)
@@ -380,7 +380,7 @@ public:
 				}
 				destination << _rgb_data[i] + random_number << " ";
 			}
-			
+
 		}
 		cout << "Applying Random Noise....." << endl << endl;
 		destination.close();
@@ -422,7 +422,6 @@ public:
 		cout << "Applying High Contrast....." << endl << endl;
 		destination.close();
 	}
-
 };
 
 #endif // !PPM_CLASS_HPP
