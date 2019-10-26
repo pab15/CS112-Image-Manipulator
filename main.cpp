@@ -15,6 +15,7 @@ int main(int argc, char* argv[])
 	char continues;
 	char switchchar;
 	bool stop_loop = false;
+	bool quit = false;
 
 	while (stop_loop == false)
 	{
@@ -43,10 +44,8 @@ int main(int argc, char* argv[])
 		cout << "t. Test All" << endl;
 		cout << "q. Quit" << endl;
 		cout << endl;
+		cout << "Selection: ";
 		cin >> switchchar;
-		cout << endl;
-
-		cout << "------------------------------------" << endl;
 		cout << endl;
 
 		PpmClass doc{};
@@ -93,7 +92,7 @@ int main(int argc, char* argv[])
 		case '8':
 			doc.randomNoise(input_file, output_file);
 			break;
-		
+
 		case '9':
 			doc.highContrast(input_file, output_file);
 			break;
@@ -102,7 +101,7 @@ int main(int argc, char* argv[])
 		case 'V':
 			doc.viewPpmContents(input_file);
 			break;
-		
+
 		case 't':
 		case 'T':
 			test.removeRed(input_file, "testRR.ppm");
@@ -135,6 +134,93 @@ int main(int argc, char* argv[])
 			cout << endl;
 			break;
 		}
+
+		do
+		{
+			PpmClass newdoc{};
+			input_file = output_file;
+			cout << "Selection: ";
+			cin >> switchchar;
+			cout << endl;
+			switch (switchchar)
+			{
+			case '1':
+				newdoc.removeRed(input_file, output_file);
+				break;
+
+			case '2':
+				newdoc.removeGreen(input_file, output_file);
+				break;
+
+			case '3':
+				newdoc.removeBlue(input_file, output_file);
+				break;
+
+			case '4':
+				newdoc.negateRed(input_file, output_file);
+				break;
+
+			case '5':
+				newdoc.negateGreen(input_file, output_file);
+				break;
+
+			case '6':
+				newdoc.negateBlue(input_file, output_file);
+				break;
+
+			case '7':
+				newdoc.grayScale(input_file, output_file);
+				break;
+
+			case '8':
+				newdoc.randomNoise(input_file, output_file);
+				break;
+
+			case '9':
+				newdoc.highContrast(input_file, output_file);
+				break;
+
+			case 'v':
+			case 'V':
+				newdoc.viewPpmContents(input_file);
+				break;
+
+			case 't':
+			case 'T':
+				test.removeRed(input_file, "testRR.ppm");
+				cout << endl;
+				test2.removeGreen(input_file, "testRG.ppm");
+				cout << endl;
+				test3.removeBlue(input_file, "testRB.ppm");
+				cout << endl;
+				test4.negateRed(input_file, "testNR.ppm");
+				cout << endl;
+				test5.negateGreen(input_file, "testNG.ppm");
+				cout << endl;
+				test6.negateBlue(input_file, "testNB.ppm");
+				cout << endl;
+				test7.grayScale(input_file, "testGS.ppm");
+				cout << endl;
+				test8.randomNoise(input_file, "testGS.ppm");
+				cout << endl;
+				test9.highContrast(input_file, "testGS.ppm");
+				cout << endl;
+				break;
+
+			case 'q':
+			case 'Q':
+				cout << "Ending Effect Chain....." << endl;
+				cout << endl;
+				quit = true;
+				break;
+
+			default:
+				cout << "Error! Invalid Selection." << endl;
+				cout << endl;
+				break;
+			}
+		} while (quit != true);
+		
 
 		cout << "------------------------------------" << endl;
 		cout << endl;
