@@ -127,6 +127,7 @@
     <ClCompile Include="Main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="randomnoise.ppm" />
     <None Include="samples\blocks.ppm" />
     <None Include="samples\bunny.ppm" />
     <None Include="samples\bunny2.ppm" />

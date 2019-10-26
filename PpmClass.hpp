@@ -356,7 +356,7 @@ public:
 			
 			int random = (rand() % 20);
 			int random_number = random - 10;
-			if (_rgb_data[i] + random_number > 255)
+			if ((int)_rgb_data[i] + random_number > 255)
 			{
 				if (i % (3 * _width) == 0)
 				{
@@ -364,7 +364,7 @@ public:
 				}
 				destination << 255 << " ";
 			}
-			else if (_rgb_data[i] - random_number > 0)
+			else if ((int)_rgb_data[i] - random_number < 0)
 			{
 				if (i % (3 * _width) == 0)
 				{
@@ -397,7 +397,7 @@ public:
 		destination << _max_pixel_value << endl;
 		for (int i = 0; i < _rgb_data.size(); i++)
 		{
-			if (_rgb_data[i] > (255 / 2))
+			if ((int)_rgb_data[i] > 127)
 			{
 				if (i % (3 * _width) == 0)
 				{
@@ -405,17 +405,13 @@ public:
 				}
 				destination << 255 << " ";
 			}
-			else if (_rgb_data[i] < (255 / 2))
+			if ((int)_rgb_data[i] < 127)
 			{
 				if (i % (3 * _width) == 0)
 				{
 					destination << endl;
 				}
 				destination << 0 << " ";
-			}
-			else
-			{
-				cout << "Invalid Pixel Value" << endl;
 			}
 		}
 

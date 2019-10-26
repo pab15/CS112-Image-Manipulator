@@ -47,6 +47,9 @@
     <None Include="samples\tinypix.ppm">
       <Filter>Resource Files\samples</Filter>
     </None>
+    <None Include="randomnoise.ppm">
+      <Filter>Resource Files</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FileHelpers.h">
