@@ -395,9 +395,10 @@ public:
 		destination << _image_format << endl;
 		destination << _width << " " << _height << endl;
 		destination << _max_pixel_value << endl;
+
 		for (int i = 0; i < _rgb_data.size(); i++)
 		{
-			if ((int)_rgb_data[i] > 127)
+			if (_rgb_data[i] > 127)
 			{
 				if (i % (3 * _width) == 0)
 				{
@@ -405,7 +406,7 @@ public:
 				}
 				destination << 255 << " ";
 			}
-			if ((int)_rgb_data[i] < 127)
+			if (_rgb_data[i] < 127)
 			{
 				if (i % (3 * _width) == 0)
 				{
