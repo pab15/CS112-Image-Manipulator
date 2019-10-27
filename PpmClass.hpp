@@ -398,7 +398,7 @@ public:
 
 		for (int i = 0; i < _rgb_data.size(); i++)
 		{
-			if (_rgb_data[i] > 127)
+			if (_rgb_data[i] >= 128)
 			{
 				if (i % (3 * _width) == 0)
 				{
@@ -406,7 +406,7 @@ public:
 				}
 				destination << 255 << " ";
 			}
-			if (_rgb_data[i] < 127)
+			if (_rgb_data[i] <= 127)
 			{
 				if (i % (3 * _width) == 0)
 				{
