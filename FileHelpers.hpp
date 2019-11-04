@@ -1,6 +1,6 @@
 #pragma once
-#ifndef FILE_HELPERS_H
-#define FILE_HELPERS_H
+#ifndef FILE_HELPERS_HPP
+#define FILE_HELPERS_HPP
 
 #include <vector>
 #include <string>

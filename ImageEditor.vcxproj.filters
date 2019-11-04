@@ -49,10 +49,13 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="FileHelpers.h">
+    <ClInclude Include="Pixel.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="PpmClass.hpp">
+    <ClInclude Include="FileHelpers.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PpmDocument.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

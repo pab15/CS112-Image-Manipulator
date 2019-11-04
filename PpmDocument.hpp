@@ -1,0 +1,460 @@
+#pragma once
+#ifndef PPM_DOCUMENT_HPP
+#define PPM_DOCUMENT_HPP
+#include <string>
+#include <vector>
+#include <sstream>
+#include <exception>
+#include "FileHelpers.hpp"
+#include "Pixel.hpp"
+using namespace std;
+
+class PpmDocument
+{
+private:
+	//underscore means that the variable belongs
+	//to the object
+	string _format;
+	int _width = 0;
+	int _height = 0;
+	int _color_depth = 0;
+	string _file_name;
+	vector<vector<Pixel>> _rgb_data;
+	vector<unsigned char> _raw_bytes;
+
+	void checkDocumentValidity(istream& stream)
+	{
+		if (stream.good() == false && stream.eof() == false)
+		{
+			throw exception{ "Invalid PPM spec" };
+		}
+	}
+
+public:
+
+	//constructor method gets called automatically
+	//whenever we create a new PpmDocument
+	PpmDocument(string file_name)
+	{
+		open(file_name);
+	}
+
+	//do nothing constructor for when we don't
+	//have a file name
+	PpmDocument()
+	{
+	}
+
+
+	void open(string file_name)
+	{
+		_file_name = file_name;
+		vector<string> raw_data = readFile(_file_name);
+
+		//make sure file was read successfully
+		if (raw_data.size() == 0)
+		{
+			//TODO: throw error
+		}
+		else
+		{
+			//set object properties
+			_format = raw_data[0];
+
+			//grab width and height using istringstream
+			istringstream line{ raw_data[1] };
+			line >> _width;
+			line >> _height;
+			checkDocumentValidity(line);
+
+			//color depth
+			line = istringstream{ raw_data[2] };
+			line >> _color_depth;
+			checkDocumentValidity(line);
+
+			//process data
+			for (int i = 3; i < raw_data.size(); i++)
+			{
+				istringstream numbers_str{ raw_data[i] };
+
+				vector<Pixel> temp{};
+
+				while (numbers_str.eof() == false)
+				{
+					Pixel pix;
+					numbers_str >> pix;
+					temp.push_back(pix);
+				}
+
+				_rgb_data.push_back(temp);
+				temp.clear();
+			}
+		}
+	}
+
+	int getColorDepth() const
+	{
+		return _color_depth;
+	}
+
+	string getFileName() const
+	{
+		return _file_name;
+	}
+
+	void setFileName(const string& file_name)
+	{
+		_file_name = file_name;
+	}
+
+	int getHeight() const
+	{
+		return _height;
+	}
+
+	int getWidth() const
+	{
+		return _width;
+	}
+
+	string getImageFormat() const
+	{
+		return _format;
+	}
+
+	void setImageFormat(string format)
+	{
+		//error checking
+		if (format == "P3" || format == "P6")
+		{
+			_format = format;
+		}
+		else
+		{
+			//TODO: throw error 
+		}
+	}
+
+	void viewFile(string input_file)
+	{
+		open(input_file);
+		cout << _format << endl;
+		cout << _width << " " << _height << endl;
+		cout << _color_depth << endl;
+		for (int i = 0; i < _rgb_data[i].size(); i++)
+		{
+			for (int j = 0; j < _width; j++)
+			{
+				cout << _rgb_data[i][j] << " ";
+			}
+			cout << endl;
+		}
+	}
+
+	void removeRed(string input_file, string output_file)
+	{
+		open(input_file);
+		ofstream destination;
+		destination.open(output_file);
+
+		destination << _format << endl;
+		destination << _width << " " << _height << endl;
+		destination << _color_depth << endl;
+
+		for (int i = 0; i < _rgb_data[i].size(); i++)
+		{
+			for (int j = 0; j < _width; j++)
+			{
+				_rgb_data[i][j].setRed(0);
+				destination << _rgb_data[i][j] << " ";
+			}
+			destination << endl;
+		}
+
+		cout << "Removing All Red....." << endl << endl;
+		destination.close();
+	}
+
+	void removeGreen(string input_file, string output_file)
+	{
+		open(input_file);
+		ofstream destination;
+		destination.open(output_file);
+
+		destination << _format << endl;
+		destination << _width << " " << _height << endl;
+		destination << _color_depth << endl;
+
+		for (int i = 0; i < _rgb_data[i].size(); i++)
+		{
+			for (int j = 0; j < _width; j++)
+			{
+				_rgb_data[i][j].setGreen(0);
+				destination << _rgb_data[i][j] << " ";
+			}
+			destination << endl;
+		}
+
+		cout << "Removing All Green....." << endl << endl;
+		destination.close();
+	}
+
+	void removeBlue(string input_file, string output_file)
+	{
+		open(input_file);
+		ofstream destination;
+		destination.open(output_file);
+
+		destination << _format << endl;
+		destination << _width << " " << _height << endl;
+		destination << _color_depth << endl;
+
+		for (int i = 0; i < _rgb_data[i].size(); i++)
+		{
+			for (int j = 0; j < _width; j++)
+			{
+				_rgb_data[i][j].setBlue(0);
+				destination << _rgb_data[i][j] << " ";
+			}
+			destination << endl;
+		}
+
+		cout << "Removing All Blue....." << endl << endl;
+		destination.close();
+	}
+
+	void negateRed(string input_file, string output_file)
+	{
+		open(input_file);
+		ofstream destination;
+		destination.open(output_file);
+
+		destination << _format << endl;
+		destination << _width << " " << _height << endl;
+		destination << _color_depth << endl;
+
+		for (int i = 0; i < _rgb_data[i].size(); i++)
+		{
+			for (int j = 0; j < _width; j++)
+			{
+				_rgb_data[i][j].setRed(255 - _rgb_data[i][j].getRed());
+				destination << _rgb_data[i][j] << " ";
+			}
+			destination << endl;
+		}
+
+		cout << "Negating All Red....." << endl << endl;
+		destination.close();
+	}
+
+	void negateGreen(string input_file, string output_file)
+	{
+		open(input_file);
+		ofstream destination;
+		destination.open(output_file);
+
+		destination << _format << endl;
+		destination << _width << " " << _height << endl;
+		destination << _color_depth << endl;
+
+		for (int i = 0; i < _rgb_data[i].size(); i++)
+		{
+			for (int j = 0; j < _width; j++)
+			{
+				_rgb_data[i][j].setGreen(255 - _rgb_data[i][j].getGreen());
+				destination << _rgb_data[i][j] << " ";
+			}
+			destination << endl;
+		}
+
+		cout << "Negating All Green....." << endl << endl;
+		destination.close();
+	}
+
+	void negateBlue(string input_file, string output_file)
+	{
+		open(input_file);
+		ofstream destination;
+		destination.open(output_file);
+
+		destination << _format << endl;
+		destination << _width << " " << _height << endl;
+		destination << _color_depth << endl;
+
+		for (int i = 0; i < _rgb_data[i].size(); i++)
+		{
+			for (int j = 0; j < _width; j++)
+			{
+				_rgb_data[i][j].setBlue(255 - _rgb_data[i][j].getBlue());
+				destination << _rgb_data[i][j] << " ";
+			}
+			destination << endl;
+		}
+
+		cout << "Negating All Blue....." << endl << endl;
+		destination.close();
+	}
+
+	void grayScale(string input_file, string output_file)
+	{
+		open(input_file);
+		ofstream destination;
+		destination.open(output_file);
+
+		destination << _format << endl;
+		destination << _width << " " << _height << endl;
+		destination << _color_depth << endl;
+
+		int avg_triplet = 0;
+
+		for (int i = 0; i < _rgb_data[i].size(); i++)
+		{
+			for (int j = 0; j < _width; j++)
+			{
+				avg_triplet = ((_rgb_data[i][j].getRed() +_rgb_data[i][j].getGreen() + _rgb_data[i][j].getBlue()) / 3);
+				destination << avg_triplet << " " << avg_triplet << " " << avg_triplet << " ";
+			}
+			destination << endl;
+		}
+
+		cout << "Grayscaling All Pixels....." << endl << endl;
+		destination.close();
+	}
+
+	void randomNoise(string input_file, string output_file)
+	{
+		open(input_file);
+		ofstream destination;
+		destination.open(output_file);
+
+		destination << _format << endl;
+		destination << _width << " " << _height << endl;
+		destination << _color_depth << endl;
+		srand(time(NULL));
+		for (int i = 0; i < _rgb_data.size(); i++)
+		{
+			for (int i = 0; i < _rgb_data[i].size(); i++)
+			{
+				for (int j = 0; j < _width; j++)
+				{
+					for (int x = 0; x < 3; x++)
+					{
+						int random = (rand() % 20);
+						int random_number = random - 10;
+						if (x = 0)
+						{
+							if (_rgb_data[i][j].getRed() + random_number > 255)
+							{
+								_rgb_data[i][j].setRed(255);
+							}
+							else if (_rgb_data[i][j].getRed() - random_number < 0)
+							{
+								_rgb_data[i][j].setRed(0);
+							}
+							else
+							{
+								_rgb_data[i][j].setRed(_rgb_data[i][j].getRed() + random_number);
+							}
+						}
+						if (x = 1)
+						{
+							if (_rgb_data[i][j].getGreen() + random_number > 255)
+							{
+								_rgb_data[i][j].setGreen(255);
+							}
+							else if (_rgb_data[i][j].getGreen() - random_number < 0)
+							{
+								_rgb_data[i][j].setGreen(0);
+							}
+							else
+							{
+								_rgb_data[i][j].setGreen(_rgb_data[i][j].getGreen() + random_number);
+							}
+						}
+						if (x = 2)
+						{
+							if (_rgb_data[i][j].getBlue() + random_number > 255)
+							{
+								_rgb_data[i][j].setBlue(255);
+							}
+							else if (_rgb_data[i][j].getBlue() - random_number < 0)
+							{
+								_rgb_data[i][j].setRed(0);
+							}
+							else
+							{
+								_rgb_data[i][j].setBlue(_rgb_data[i][j].getBlue() + random_number);
+							}
+						}
+					}
+					destination << _rgb_data[i][j] << " ";
+				}
+				destination << endl;
+			}
+		}
+		cout << "Applying Random Noise....." << endl << endl;
+		destination.close();
+	}
+
+	void highContrast(string input_file, string output_file)
+	{
+		open(input_file);
+		ofstream destination;
+		destination.open(output_file);
+
+		destination << _format << endl;
+		destination << _width << " " << _height << endl;
+		destination << _color_depth << endl;
+
+		for (int i = 0; i < _rgb_data[i].size(); i++)
+		{
+			for (int j = 0; j < _width; j++)
+			{
+				for (int x = 0; x < 3; x++)
+				{
+					if (x = 0)
+					{
+						if (_rgb_data[i][j].getRed() >= 128)
+						{
+							_rgb_data[i][j].setRed(255);
+						}
+						else 
+						{
+							_rgb_data[i][j].setRed(0);
+						}
+					}
+					if (x = 1)
+					{
+						if (_rgb_data[i][j].getGreen() >= 128)
+						{
+							_rgb_data[i][j].setGreen(255);
+						}
+						else
+						{
+							_rgb_data[i][j].setGreen(0);
+						}
+					}
+					if (x = 2)
+					{
+						if (_rgb_data[i][j].getBlue() >= 128)
+						{
+							_rgb_data[i][j].setBlue(255);
+						}
+						else
+						{
+							_rgb_data[i][j].setBlue(0);
+						}
+					}
+				}
+				destination << _rgb_data[i][j] << " ";
+			}
+			destination << endl;
+		}
+
+		cout << "Applying High Contrast....." << endl << endl;
+		destination.close();
+	}
+};
+
+
+#endif // !PPM_DOCUMENT_HPP

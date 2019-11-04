@@ -1,12 +1,14 @@
-#include <string>
 #include <iostream>
-#include <fstream>
-#include <vector>
+#include <string>
 #include <sstream>
-#include "PpmClass.hpp"
-#include "FileHelpers.h"
-using namespace std;
-
+#include <fstream>
+#include <cmath>
+#include <ctime>
+#include <exception> //exposes Exception objects
+#include <vector> //CH4 -- replaces basic C-style arrays
+#include <iomanip> //for making fancy couts and output to file
+#include "FileHelpers.hpp"
+#include "PpmDocument.hpp"
 
 int main(int argc, char* argv[])
 {
@@ -48,16 +50,16 @@ int main(int argc, char* argv[])
 		cin >> switchchar;
 		cout << endl;
 
-		PpmClass doc{};
-		PpmClass test{};
-		PpmClass test2{};
-		PpmClass test3{};
-		PpmClass test4{};
-		PpmClass test5{};
-		PpmClass test6{};
-		PpmClass test7{};
-		PpmClass test8{};
-		PpmClass test9{};
+		PpmDocument doc{};
+		PpmDocument test{};
+		PpmDocument test2{};
+		PpmDocument test3{};
+		PpmDocument test4{};
+		PpmDocument test5{};
+		PpmDocument test6{};
+		PpmDocument test7{};
+		PpmDocument test8{};
+		PpmDocument test9{};
 
 		switch (switchchar)
 		{
@@ -99,7 +101,7 @@ int main(int argc, char* argv[])
 
 		case 'v':
 		case 'V':
-			doc.viewPpmContents(input_file);
+			doc.viewFile(input_file);
 			break;
 
 		case 't':
@@ -137,7 +139,7 @@ int main(int argc, char* argv[])
 
 		do
 		{
-			PpmClass newdoc{};
+			PpmDocument newdoc{};
 			input_file = output_file;
 			cout << "Selection: ";
 			cin >> switchchar;
@@ -182,7 +184,7 @@ int main(int argc, char* argv[])
 
 			case 'v':
 			case 'V':
-				newdoc.viewPpmContents(input_file);
+				newdoc.viewFile(input_file);
 				break;
 
 			case 't':
@@ -220,7 +222,7 @@ int main(int argc, char* argv[])
 				break;
 			}
 		} while (quit != true);
-		
+
 
 		cout << "------------------------------------" << endl;
 		cout << endl;
@@ -231,26 +233,26 @@ int main(int argc, char* argv[])
 		cout << "------------------------------------" << endl;
 		cout << endl;
 
-		switch(continues)
+		switch (continues)
 		{
-			case 'n':
-			case 'N':
-				stop_loop = true;
-				cout << "Ending Program....." << endl;
-				break;
+		case 'n':
+		case 'N':
+			stop_loop = true;
+			cout << "Ending Program....." << endl;
+			break;
 
-			case 'y':
-			case 'Y':
-				stop_loop = false;
-				break;
-				cout << "------------------------------------" << endl;
-				cout << endl;
+		case 'y':
+		case 'Y':
+			stop_loop = false;
+			break;
+			cout << "------------------------------------" << endl;
+			cout << endl;
 
-			default:
-				stop_loop = true;
-				cout << "Error! Invalid Input." << endl;
-				cout << "Ending Program....." << endl;
-				break;
+		default:
+			stop_loop = true;
+			cout << "Error! Invalid Input." << endl;
+			cout << "Ending Program....." << endl;
+			break;
 		}
 	}
 
