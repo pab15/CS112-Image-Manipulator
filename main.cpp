@@ -221,7 +221,7 @@ int main(int argc, char* argv[])
 				cout << endl;
 				break;
 			}
-		} while (quit != true);
+		} while (quit == false);
 
 
 		cout << "------------------------------------" << endl;

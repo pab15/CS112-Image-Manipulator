@@ -71,6 +71,13 @@ public:
 			line = istringstream{ raw_data[2] };
 			line >> _color_depth;
 			checkDocumentValidity(line);
+			_rgb_data.resize(_height);
+
+			//resize each row to be of correct width
+			for (int i = 0; i < _height; i++)
+			{
+				_rgb_data[i].resize(_width);
+			}
 
 			//process data
 			for (int i = 3; i < raw_data.size(); i++)
@@ -331,66 +338,28 @@ public:
 		destination << _width << " " << _height << endl;
 		destination << _color_depth << endl;
 		srand(time(NULL));
-		for (int i = 0; i < _rgb_data.size(); i++)
+		for (int i = 0; i < _rgb_data[i].size(); i++)
 		{
-			for (int i = 0; i < _rgb_data[i].size(); i++)
+			for (int j = 0; j < _width; j++)
 			{
-				for (int j = 0; j < _width; j++)
+				int random = (rand() % 20);
+				int random_number = random - 10;
+				if ((_rgb_data[i][j].getRed() + random_number) >= 255)
 				{
-					for (int x = 0; x < 3; x++)
-					{
-						int random = (rand() % 20);
-						int random_number = random - 10;
-						if (x = 0)
-						{
-							if (_rgb_data[i][j].getRed() + random_number > 255)
-							{
-								_rgb_data[i][j].setRed(255);
-							}
-							else if (_rgb_data[i][j].getRed() - random_number < 0)
-							{
-								_rgb_data[i][j].setRed(0);
-							}
-							else
-							{
-								_rgb_data[i][j].setRed(_rgb_data[i][j].getRed() + random_number);
-							}
-						}
-						if (x = 1)
-						{
-							if (_rgb_data[i][j].getGreen() + random_number > 255)
-							{
-								_rgb_data[i][j].setGreen(255);
-							}
-							else if (_rgb_data[i][j].getGreen() - random_number < 0)
-							{
-								_rgb_data[i][j].setGreen(0);
-							}
-							else
-							{
-								_rgb_data[i][j].setGreen(_rgb_data[i][j].getGreen() + random_number);
-							}
-						}
-						if (x = 2)
-						{
-							if (_rgb_data[i][j].getBlue() + random_number > 255)
-							{
-								_rgb_data[i][j].setBlue(255);
-							}
-							else if (_rgb_data[i][j].getBlue() - random_number < 0)
-							{
-								_rgb_data[i][j].setRed(0);
-							}
-							else
-							{
-								_rgb_data[i][j].setBlue(_rgb_data[i][j].getBlue() + random_number);
-							}
-						}
-					}
-					destination << _rgb_data[i][j] << " ";
+					_rgb_data[i][j].setRed(255);
 				}
-				destination << endl;
+				else if ((_rgb_data[i][j].getRed() - random_number) <= 0)
+				{
+					_rgb_data[i][j].setRed(0);
+				}
+				else
+				{
+					_rgb_data[i][j].setRed((_rgb_data[i][j].getRed() + random_number));
+				}
+
+				destination << _rgb_data[i][j] << " ";
 			}
+			destination << endl;
 		}
 		cout << "Applying Random Noise....." << endl << endl;
 		destination.close();
@@ -410,45 +379,33 @@ public:
 		{
 			for (int j = 0; j < _width; j++)
 			{
-				for (int x = 0; x < 3; x++)
+				if (_rgb_data[i][j].getRed() >= 128)
 				{
-					if (x = 0)
-					{
-						if (_rgb_data[i][j].getRed() >= 128)
-						{
-							_rgb_data[i][j].setRed(255);
-						}
-						else 
-						{
-							_rgb_data[i][j].setRed(0);
-						}
-					}
-					if (x = 1)
-					{
-						if (_rgb_data[i][j].getGreen() >= 128)
-						{
-							_rgb_data[i][j].setGreen(255);
-						}
-						else
-						{
-							_rgb_data[i][j].setGreen(0);
-						}
-					}
-					if (x = 2)
-					{
-						if (_rgb_data[i][j].getBlue() >= 128)
-						{
-							_rgb_data[i][j].setBlue(255);
-						}
-						else
-						{
-							_rgb_data[i][j].setBlue(0);
-						}
-					}
+					_rgb_data[i][j].setRed(255);
 				}
-				destination << _rgb_data[i][j] << " ";
+				else
+				{
+					_rgb_data[i][j].setRed(0);
+				}
+				if (_rgb_data[i][j].getGreen() >= 128)
+				{
+					_rgb_data[i][j].setGreen(255);
+				}
+				else
+				{
+					_rgb_data[i][j].setGreen(0);
+				}
+				if (_rgb_data[i][j].getBlue() >= 128)
+				{
+					_rgb_data[i][j].setBlue(255);
+				}
+				else
+				{
+					_rgb_data[i][j].setBlue(0);
+				}
+
+				destination << endl;
 			}
-			destination << endl;
 		}
 
 		cout << "Applying High Contrast....." << endl << endl;
