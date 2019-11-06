@@ -36,7 +36,7 @@ public:
 
 	void setBlue(int b)
 	{
-		_red = b;
+		_blue = b;
 	}
 
 	int getBlue()

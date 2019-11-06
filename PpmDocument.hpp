@@ -71,30 +71,25 @@ public:
 			line = istringstream{ raw_data[2] };
 			line >> _color_depth;
 			checkDocumentValidity(line);
-			_rgb_data.resize(_height);
-
-			//resize each row to be of correct width
-			for (int i = 0; i < _height; i++)
-			{
-				_rgb_data[i].resize(_width);
-			}
-
+			
 			//process data
 			for (int i = 3; i < raw_data.size(); i++)
 			{
 				istringstream numbers_str{ raw_data[i] };
-
 				vector<Pixel> temp{};
-
 				while (numbers_str.eof() == false)
 				{
 					Pixel pix;
 					numbers_str >> pix;
-					temp.push_back(pix);
+					checkDocumentValidity(numbers_str);
+					if (pix.getRed() >= 0)
+					{
+						temp.push_back(pix);
+					}
 				}
-
 				_rgb_data.push_back(temp);
 				temp.clear();
+				
 			}
 		}
 	}
@@ -148,9 +143,9 @@ public:
 		cout << _format << endl;
 		cout << _width << " " << _height << endl;
 		cout << _color_depth << endl;
-		for (int i = 0; i < _rgb_data[i].size(); i++)
+		for (int i = 0; i < _rgb_data.size(); i++)
 		{
-			for (int j = 0; j < _width; j++)
+			for (int j = 0; j < _rgb_data[i].size(); j++)
 			{
 				cout << _rgb_data[i][j] << " ";
 			}
@@ -168,9 +163,9 @@ public:
 		destination << _width << " " << _height << endl;
 		destination << _color_depth << endl;
 
-		for (int i = 0; i < _rgb_data[i].size(); i++)
+		for (int i = 0; i < _rgb_data.size(); i++)
 		{
-			for (int j = 0; j < _width; j++)
+			for (int j = 0; j < _rgb_data[i].size(); j++)
 			{
 				_rgb_data[i][j].setRed(0);
 				destination << _rgb_data[i][j] << " ";
@@ -192,9 +187,9 @@ public:
 		destination << _width << " " << _height << endl;
 		destination << _color_depth << endl;
 
-		for (int i = 0; i < _rgb_data[i].size(); i++)
+		for (int i = 0; i < _rgb_data.size(); i++)
 		{
-			for (int j = 0; j < _width; j++)
+			for (int j = 0; j < _rgb_data[i].size(); j++)
 			{
 				_rgb_data[i][j].setGreen(0);
 				destination << _rgb_data[i][j] << " ";
@@ -216,9 +211,9 @@ public:
 		destination << _width << " " << _height << endl;
 		destination << _color_depth << endl;
 
-		for (int i = 0; i < _rgb_data[i].size(); i++)
+		for (int i = 0; i < _rgb_data.size(); i++)
 		{
-			for (int j = 0; j < _width; j++)
+			for (int j = 0; j < _rgb_data[i].size(); j++)
 			{
 				_rgb_data[i][j].setBlue(0);
 				destination << _rgb_data[i][j] << " ";
@@ -240,9 +235,9 @@ public:
 		destination << _width << " " << _height << endl;
 		destination << _color_depth << endl;
 
-		for (int i = 0; i < _rgb_data[i].size(); i++)
+		for (int i = 0; i < _rgb_data.size(); i++)
 		{
-			for (int j = 0; j < _width; j++)
+			for (int j = 0; j < _rgb_data[i].size(); j++)
 			{
 				_rgb_data[i][j].setRed(255 - _rgb_data[i][j].getRed());
 				destination << _rgb_data[i][j] << " ";
@@ -264,9 +259,9 @@ public:
 		destination << _width << " " << _height << endl;
 		destination << _color_depth << endl;
 
-		for (int i = 0; i < _rgb_data[i].size(); i++)
+		for (int i = 0; i < _rgb_data.size(); i++)
 		{
-			for (int j = 0; j < _width; j++)
+			for (int j = 0; j < _rgb_data[i].size(); j++)
 			{
 				_rgb_data[i][j].setGreen(255 - _rgb_data[i][j].getGreen());
 				destination << _rgb_data[i][j] << " ";
@@ -288,9 +283,9 @@ public:
 		destination << _width << " " << _height << endl;
 		destination << _color_depth << endl;
 
-		for (int i = 0; i < _rgb_data[i].size(); i++)
+		for (int i = 0; i < _rgb_data.size(); i++)
 		{
-			for (int j = 0; j < _width; j++)
+			for (int j = 0; j < _rgb_data[i].size(); j++)
 			{
 				_rgb_data[i][j].setBlue(255 - _rgb_data[i][j].getBlue());
 				destination << _rgb_data[i][j] << " ";
@@ -314,11 +309,11 @@ public:
 
 		int avg_triplet = 0;
 
-		for (int i = 0; i < _rgb_data[i].size(); i++)
+		for (int i = 0; i < _rgb_data.size(); i++)
 		{
-			for (int j = 0; j < _width; j++)
+			for (int j = 0; j < _rgb_data[i].size(); j++)
 			{
-				avg_triplet = ((_rgb_data[i][j].getRed() +_rgb_data[i][j].getGreen() + _rgb_data[i][j].getBlue()) / 3);
+				avg_triplet = ((_rgb_data[i][j].getRed() + _rgb_data[i][j].getGreen() + _rgb_data[i][j].getBlue()) / 3);
 				destination << avg_triplet << " " << avg_triplet << " " << avg_triplet << " ";
 			}
 			destination << endl;
@@ -338,9 +333,9 @@ public:
 		destination << _width << " " << _height << endl;
 		destination << _color_depth << endl;
 		srand(time(NULL));
-		for (int i = 0; i < _rgb_data[i].size(); i++)
+		for (int i = 0; i < _rgb_data.size(); i++)
 		{
-			for (int j = 0; j < _width; j++)
+			for (int j = 0; j < _rgb_data[i].size(); j++)
 			{
 				int random = (rand() % 20);
 				int random_number = random - 10;
@@ -375,9 +370,9 @@ public:
 		destination << _width << " " << _height << endl;
 		destination << _color_depth << endl;
 
-		for (int i = 0; i < _rgb_data[i].size(); i++)
+		for (int i = 0; i < _rgb_data.size(); i++)
 		{
-			for (int j = 0; j < _width; j++)
+			for (int j = 0; j < _rgb_data[i].size(); j++)
 			{
 				if (_rgb_data[i][j].getRed() >= 128)
 				{
@@ -403,9 +398,10 @@ public:
 				{
 					_rgb_data[i][j].setBlue(0);
 				}
-
-				destination << endl;
+				destination << _rgb_data[i][j] << " ";
 			}
+
+			destination << endl;
 		}
 
 		cout << "Applying High Contrast....." << endl << endl;

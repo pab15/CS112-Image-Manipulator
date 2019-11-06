@@ -127,7 +127,6 @@
     <ClCompile Include="Main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="newrand.ppm" />
     <None Include="samples\blocks.ppm" />
     <None Include="samples\bunny.ppm" />
     <None Include="samples\bunny2.ppm" />
@@ -135,12 +134,22 @@
     <None Include="samples\smiley.ppm" />
     <None Include="samples\squares.ppm" />
     <None Include="samples\tinypix.ppm" />
-    <None Include="teststts.ppm" />
+    <None Include="testGS.ppm" />
+    <None Include="testHC.ppm" />
+    <None Include="testNB.ppm" />
+    <None Include="testNG.ppm" />
+    <None Include="testNR.ppm" />
+    <None Include="testRB.ppm" />
+    <None Include="testRG.ppm" />
+    <None Include="testRR.ppm" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FileHelpers.hpp" />
     <ClInclude Include="Pixel.hpp" />
     <ClInclude Include="PpmDocument.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="reference.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

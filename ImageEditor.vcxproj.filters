@@ -47,11 +47,29 @@
     <None Include="samples\tinypix.ppm">
       <Filter>Resource Files\samples</Filter>
     </None>
-    <None Include="newrand.ppm">
+    <None Include="testGS.ppm">
       <Filter>Resource Files</Filter>
     </None>
-    <None Include="teststts.ppm">
+    <None Include="testNB.ppm">
       <Filter>Resource Files</Filter>
+    </None>
+    <None Include="testNG.ppm">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="testNR.ppm">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="testRB.ppm">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="testRG.ppm">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="testRR.ppm">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="testHC.ppm">
+      <Filter>Source Files</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>
@@ -64,5 +82,10 @@
     <ClInclude Include="PpmDocument.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="reference.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
   </ItemGroup>
 </Project>

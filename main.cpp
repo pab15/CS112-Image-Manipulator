@@ -120,9 +120,9 @@ int main(int argc, char* argv[])
 			cout << endl;
 			test7.grayScale(input_file, "testGS.ppm");
 			cout << endl;
-			test8.randomNoise(input_file, "testGS.ppm");
+			test8.randomNoise(input_file, "testRN.ppm");
 			cout << endl;
-			test9.highContrast(input_file, "testGS.ppm");
+			test9.highContrast(input_file, "testHC.ppm");
 			cout << endl;
 			break;
 
@@ -203,9 +203,9 @@ int main(int argc, char* argv[])
 				cout << endl;
 				test7.grayScale(input_file, "testGS.ppm");
 				cout << endl;
-				test8.randomNoise(input_file, "testGS.ppm");
+				test8.randomNoise(input_file, "testRN.ppm");
 				cout << endl;
-				test9.highContrast(input_file, "testGS.ppm");
+				test9.highContrast(input_file, "testHC.ppm");
 				cout << endl;
 				break;
 
