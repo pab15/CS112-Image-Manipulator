@@ -72,11 +72,18 @@ public:
 			line >> _color_depth;
 			checkDocumentValidity(line);
 			
+			_rgb_data.resize(_height);
+			for (int i = 0; i < _height; i++)
+			{
+				_rgb_data[i].resize(_width);
+			}
+
+			int cur_x = 0;
+			int cur_y = 0;
 			//process data
 			for (int i = 3; i < raw_data.size(); i++)
 			{
 				istringstream numbers_str{ raw_data[i] };
-				vector<Pixel> temp{};
 				while (numbers_str.eof() == false)
 				{
 					Pixel pix;
@@ -84,12 +91,15 @@ public:
 					checkDocumentValidity(numbers_str);
 					if (pix.getRed() >= 0)
 					{
-						temp.push_back(pix);
+						_rgb_data[cur_y][cur_x] = pix;
+						cur_x++;
+					}
+					if (cur_x >= _width)
+					{
+						cur_y++;
+						cur_x = 0;
 					}
 				}
-				_rgb_data.push_back(temp);
-				temp.clear();
-				
 			}
 		}
 	}

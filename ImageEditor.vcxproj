@@ -135,7 +135,6 @@
     <None Include="samples\squares.ppm" />
     <None Include="samples\tinypix.ppm" />
     <None Include="testGS.ppm" />
-    <None Include="testHC.ppm" />
     <None Include="testNB.ppm" />
     <None Include="testNG.ppm" />
     <None Include="testNR.ppm" />

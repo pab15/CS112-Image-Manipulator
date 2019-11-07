@@ -68,9 +68,6 @@
     <None Include="testRR.ppm">
       <Filter>Resource Files</Filter>
     </None>
-    <None Include="testHC.ppm">
-      <Filter>Source Files</Filter>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Pixel.hpp">
