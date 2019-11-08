@@ -467,6 +467,39 @@ public:
 		cout << "Flipping Horizontally....." << endl << endl;
 		destination.close();
 	}
+
+	void verticalFlip(string input_file, string output_file)
+	{
+		open(input_file);
+		ofstream destination;
+		destination.open(output_file);
+
+		destination << _format << endl;
+		destination << _width << " " << _height << endl;
+		destination << _color_depth << endl;
+
+		int count = 0;
+		int new_x = 0;
+		int new_y = 0;
+		vector<vector<Pixel>> copy_vect = _rgb_data;
+
+		for (int i = _height - 1; i >= 0; i--)
+		{
+			for (int j = 0; j < _rgb_data[i].size(); j++)
+			{
+				_rgb_data[count][j] = copy_vect[i][j];
+				destination << _rgb_data[new_y][new_x] << " ";
+				new_x++;
+			}
+			destination << endl;
+			count++;
+			new_y++;
+			new_x = 0;
+		}
+
+		cout << "Flipping Vertically....." << endl << endl;
+		destination.close();
+	}
 };
 
 

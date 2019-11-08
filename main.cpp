@@ -42,9 +42,10 @@ int main(int argc, char* argv[])
 		cout << "8. Random Noise" << endl;
 		cout << "9. High Contrast" << endl;
 		cout << "10. Horizontal Flip" << endl;
-		cout << "11." << endl;
-		cout << "12." << endl;
-		cout << "13." << endl;
+		cout << "11. Vertical Flip" << endl;
+		cout << "12. Blur" << endl;
+		cout << "13. Pixelate" << endl;
+		cout << "14. Rotate 90" << endl;
 		cout << "q. Quit" << endl;
 		cout << endl;
 		cout << "Selection: ";
@@ -101,6 +102,19 @@ int main(int argc, char* argv[])
 
 			case 10:
 				doc.horizontalFlip(input_file, output_file);
+				break;
+
+			case 11:
+				doc.verticalFlip(input_file, output_file);
+				break;
+
+			case 12:
+				break;
+
+			case 13:
+				break;
+
+			case 14:
 				break;
 
 			default:
@@ -163,6 +177,19 @@ int main(int argc, char* argv[])
 
 					case 10:
 						newdoc.horizontalFlip(input_file, output_file);
+						break;
+
+					case 11:
+						newdoc.verticalFlip(input_file, output_file);
+						break;
+
+					case 12:
+						break;
+
+					case 13:
+						break;
+
+					case 14:
 						break;
 
 					default:
