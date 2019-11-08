@@ -14,8 +14,7 @@ using namespace std;
 class PpmDocument
 {
 private:
-	//underscore means that the variable belongs
-	//to the object
+
 	string _format;
 	int _width = 0;
 	int _height = 0;
@@ -34,19 +33,14 @@ private:
 
 public:
 
-	//constructor method gets called automatically
-	//whenever we create a new PpmDocument
 	PpmDocument(string file_name)
 	{
 		open(file_name);
 	}
 
-	//do nothing constructor for when we don't
-	//have a file name
 	PpmDocument()
 	{
 	}
-
 
 	void open(string file_name)
 	{
@@ -56,7 +50,7 @@ public:
 		//make sure file was read successfully
 		if (raw_data.size() == 0)
 		{
-			//TODO: throw error
+			throw exception{ "File Not Read Properly" };
 		}
 		else
 		{
