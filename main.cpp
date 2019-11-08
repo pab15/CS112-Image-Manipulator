@@ -112,6 +112,7 @@ int main(int argc, char* argv[])
 				break;
 
 			case 13:
+				doc.pixelateImage(input_file, output_file);
 				break;
 
 			case 14:
@@ -188,6 +189,7 @@ int main(int argc, char* argv[])
 						break;
 
 					case 13:
+						newdoc.pixelateImage(input_file, output_file);
 						break;
 
 					case 14:

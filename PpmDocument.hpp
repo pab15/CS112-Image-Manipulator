@@ -468,6 +468,40 @@ public:
 		destination.close();
 	}
 
+	void pixelateImage(string input_file, string output_file)
+	{
+		open(input_file);
+		ofstream destination;
+		destination.open(output_file);
+
+		destination << _format << endl;
+		destination << _width << " " << _height << endl;
+		destination << _color_depth << endl;
+
+		vector<vector<Pixel>> copy_vect = _rgb_data;
+
+		for (int i = 0; i < _rgb_data.size(); i += 2)
+		{
+			for (int j = 0; j < _rgb_data[i].size(); j += 2)
+			{
+				_rgb_data[i][j + 1] = copy_vect[i][j];
+				_rgb_data[i + 1][j] = copy_vect[i][j];
+				_rgb_data[i + 1][j + 1] = copy_vect[i][j];
+			}
+		}
+		for (int i = 0; i < _rgb_data.size(); i++)
+		{
+			for (int j = 0; j < _rgb_data[i].size(); j++)
+			{
+				destination << _rgb_data[i][j] << " ";
+			}
+			destination << endl;
+		}
+
+		cout << "Pixelating Image (2 Pixels)....." << endl << endl;
+		destination.close();
+	}
+
 	void verticalFlip(string input_file, string output_file)
 	{
 		open(input_file);
