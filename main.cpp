@@ -4,9 +4,9 @@
 #include <fstream>
 #include <cmath>
 #include <ctime>
-#include <exception> //exposes Exception objects
-#include <vector> //CH4 -- replaces basic C-style arrays
-#include <iomanip> //for making fancy couts and output to file
+#include <exception> 
+#include <vector> 
+#include <iomanip> 
 #include "FileHelpers.hpp"
 #include "PpmDocument.hpp"
 
@@ -15,9 +15,9 @@ int main(int argc, char* argv[])
 	string input_file;
 	string output_file;
 	char continues;
-	char switchchar;
-	bool stop_loop = false;
+	string switchchar;
 	bool quit = false;
+	bool stop_loop = false;
 
 	while (stop_loop == false)
 	{
@@ -31,7 +31,6 @@ int main(int argc, char* argv[])
 
 		cout << "------------------------------------" << endl;
 		cout << endl;
-
 		cout << "*******Select an Image Effect*******" << endl;
 		cout << "1. Remove Red" << endl;
 		cout << "2. Remove Green" << endl;
@@ -42,178 +41,66 @@ int main(int argc, char* argv[])
 		cout << "7. Grayscale" << endl;
 		cout << "8. Random Noise" << endl;
 		cout << "9. High Contrast" << endl;
-		cout << "v. View PPM file contents" << endl;
-		cout << "t. Test All" << endl;
+		cout << "10. Horizontal Flip" << endl;
+		cout << "11." << endl;
+		cout << "12." << endl;
+		cout << "13." << endl;
 		cout << "q. Quit" << endl;
 		cout << endl;
 		cout << "Selection: ";
 		cin >> switchchar;
 		cout << endl;
 
-		PpmDocument doc{};
-		PpmDocument test{};
-		PpmDocument test2{};
-		PpmDocument test3{};
-		PpmDocument test4{};
-		PpmDocument test5{};
-		PpmDocument test6{};
-		PpmDocument test7{};
-		PpmDocument test8{};
-		PpmDocument test9{};
-
-		switch (switchchar)
+		if (switchchar == "q" || switchchar == "Q")
 		{
-		case '1':
-			doc.removeRed(input_file, output_file);
-			break;
-
-		case '2':
-			doc.removeGreen(input_file, output_file);
-			break;
-
-		case '3':
-			doc.removeBlue(input_file, output_file);
-			break;
-
-		case '4':
-			doc.negateRed(input_file, output_file);
-			break;
-
-		case '5':
-			doc.negateGreen(input_file, output_file);
-			break;
-
-		case '6':
-			doc.negateBlue(input_file, output_file);
-			break;
-
-		case '7':
-			doc.grayScale(input_file, output_file);
-			break;
-
-		case '8':
-			doc.randomNoise(input_file, output_file);
-			break;
-
-		case '9':
-			doc.highContrast(input_file, output_file);
-			break;
-
-		case 'v':
-		case 'V':
-			doc.viewFile(input_file);
-			break;
-
-		case 't':
-		case 'T':
-			test.removeRed(input_file, "testRR.ppm");
-			cout << endl;
-			test2.removeGreen(input_file, "testRG.ppm");
-			cout << endl;
-			test3.removeBlue(input_file, "testRB.ppm");
-			cout << endl;
-			test4.negateRed(input_file, "testNR.ppm");
-			cout << endl;
-			test5.negateGreen(input_file, "testNG.ppm");
-			cout << endl;
-			test6.negateBlue(input_file, "testNB.ppm");
-			cout << endl;
-			test7.grayScale(input_file, "testGS.ppm");
-			cout << endl;
-			test8.randomNoise(input_file, "testRN.ppm");
-			cout << endl;
-			test9.highContrast(input_file, "testHC.ppm");
-			cout << endl;
-			break;
-
-		case 'q':
-		case 'Q':
-			cout << "Ending Effect Chain....." << endl;
-			cout << endl;
-			break;
-		default:
-			cout << "Error! Invalid Selection." << endl;
-			cout << endl;
-			break;
+			cout << "Quitting....." << endl;
 		}
-
-		do
+		else
 		{
-			PpmDocument newdoc{};
-			input_file = output_file;
-			cout << "Selection: ";
-			cin >> switchchar;
-			cout << endl;
-			switch (switchchar)
+			PpmDocument doc{};
+			string new_switch;
+			bool quit = false;
+
+			switch (stoi(switchchar))
 			{
-			case '1':
-				newdoc.removeRed(input_file, output_file);
+			case 1:
+				doc.removeRed(input_file, output_file);
 				break;
 
-			case '2':
-				newdoc.removeGreen(input_file, output_file);
+			case 2:
+				doc.removeGreen(input_file, output_file);
 				break;
 
-			case '3':
-				newdoc.removeBlue(input_file, output_file);
+			case 3:
+				doc.removeBlue(input_file, output_file);
 				break;
 
-			case '4':
-				newdoc.negateRed(input_file, output_file);
+			case 4:
+				doc.negateRed(input_file, output_file);
 				break;
 
-			case '5':
-				newdoc.negateGreen(input_file, output_file);
+			case 5:
+				doc.negateGreen(input_file, output_file);
 				break;
 
-			case '6':
-				newdoc.negateBlue(input_file, output_file);
+			case 6:
+				doc.negateBlue(input_file, output_file);
 				break;
 
-			case '7':
-				newdoc.grayScale(input_file, output_file);
+			case 7:
+				doc.grayScale(input_file, output_file);
 				break;
 
-			case '8':
-				newdoc.randomNoise(input_file, output_file);
+			case 8:
+				doc.randomNoise(input_file, output_file);
 				break;
 
-			case '9':
-				newdoc.highContrast(input_file, output_file);
+			case 9:
+				doc.highContrast(input_file, output_file);
 				break;
 
-			case 'v':
-			case 'V':
-				newdoc.viewFile(input_file);
-				break;
-
-			case 't':
-			case 'T':
-				test.removeRed(input_file, "testRR.ppm");
-				cout << endl;
-				test2.removeGreen(input_file, "testRG.ppm");
-				cout << endl;
-				test3.removeBlue(input_file, "testRB.ppm");
-				cout << endl;
-				test4.negateRed(input_file, "testNR.ppm");
-				cout << endl;
-				test5.negateGreen(input_file, "testNG.ppm");
-				cout << endl;
-				test6.negateBlue(input_file, "testNB.ppm");
-				cout << endl;
-				test7.grayScale(input_file, "testGS.ppm");
-				cout << endl;
-				test8.randomNoise(input_file, "testRN.ppm");
-				cout << endl;
-				test9.highContrast(input_file, "testHC.ppm");
-				cout << endl;
-				break;
-
-			case 'q':
-			case 'Q':
-				cout << "Ending Effect Chain....." << endl;
-				cout << endl;
-				quit = true;
+			case 10:
+				doc.horizontalFlip(input_file, output_file);
 				break;
 
 			default:
@@ -221,8 +108,71 @@ int main(int argc, char* argv[])
 				cout << endl;
 				break;
 			}
-		} while (quit == false);
 
+			do
+			{
+				PpmDocument newdoc{};
+				input_file = output_file;
+				cout << "Selection: ";
+				cin >> new_switch;
+				cout << endl;
+				if (new_switch == "q" || new_switch == "Q")
+				{
+					cout << "Quitting....." << endl;
+					quit = true;
+				}
+				else
+				{
+					switch (stoi(new_switch))
+					{
+					case 1:
+						newdoc.removeRed(input_file, output_file);
+						break;
+
+					case 2:
+						newdoc.removeGreen(input_file, output_file);
+						break;
+
+					case 3:
+						newdoc.removeBlue(input_file, output_file);
+						break;
+
+					case 4:
+						newdoc.negateRed(input_file, output_file);
+						break;
+
+					case 5:
+						newdoc.negateGreen(input_file, output_file);
+						break;
+
+					case 6:
+						newdoc.negateBlue(input_file, output_file);
+						break;
+
+					case 7:
+						newdoc.grayScale(input_file, output_file);
+						break;
+
+					case 8:
+						newdoc.randomNoise(input_file, output_file);
+						break;
+
+					case 9:
+						newdoc.highContrast(input_file, output_file);
+						break;
+
+					case 10:
+						newdoc.horizontalFlip(input_file, output_file);
+						break;
+
+					default:
+						cout << "Error! Invalid Selection." << endl;
+						cout << endl;
+						break;
+					}
+				}
+			} while (quit == false);
+		}
 
 		cout << "------------------------------------" << endl;
 		cout << endl;

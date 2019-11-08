@@ -5,8 +5,10 @@
 #include <vector>
 #include <sstream>
 #include <exception>
+#include <algorithm>
 #include "FileHelpers.hpp"
 #include "Pixel.hpp"
+#include <time.h>
 using namespace std;
 
 class PpmDocument
@@ -361,7 +363,34 @@ public:
 				{
 					_rgb_data[i][j].setRed((_rgb_data[i][j].getRed() + random_number));
 				}
-
+				random = (rand() % 20);
+				random_number = random - 10;
+				if ((_rgb_data[i][j].getGreen() + random_number) >= 255)
+				{
+					_rgb_data[i][j].setGreen(255);
+				}
+				else if ((_rgb_data[i][j].getGreen() - random_number) <= 0)
+				{
+					_rgb_data[i][j].setGreen(0);
+				}
+				else
+				{
+					_rgb_data[i][j].setGreen((_rgb_data[i][j].getGreen() + random_number));
+				}
+				random = (rand() % 20);
+				random_number = random - 10;
+				if ((_rgb_data[i][j].getBlue() + random_number) >= 255)
+				{
+					_rgb_data[i][j].setBlue(255);
+				}
+				else if ((_rgb_data[i][j].getBlue() - random_number) <= 0)
+				{
+					_rgb_data[i][j].setBlue(0);
+				}
+				else
+				{
+					_rgb_data[i][j].setRed((_rgb_data[i][j].getBlue() + random_number));
+				}
 				destination << _rgb_data[i][j] << " ";
 			}
 			destination << endl;
@@ -415,6 +444,33 @@ public:
 		}
 
 		cout << "Applying High Contrast....." << endl << endl;
+		destination.close();
+	}
+
+	void horizontalFlip(string input_file, string output_file)
+	{
+		open(input_file);
+		ofstream destination;
+		destination.open(output_file);
+
+		destination << _format << endl;
+		destination << _width << " " << _height << endl;
+		destination << _color_depth << endl;
+
+		for (int i = 0; i < _rgb_data.size(); i++)
+		{
+			reverse(_rgb_data[i].begin(), _rgb_data[i].end());
+		}
+		for (int i = 0; i < _rgb_data.size(); i++)
+		{
+			for (int j = 0; j < _rgb_data[i].size(); j++)
+			{
+				destination << _rgb_data[i][j] << " ";
+			}
+			destination << endl;
+		}
+
+		cout << "Flipping Horizontally....." << endl << endl;
 		destination.close();
 	}
 };
