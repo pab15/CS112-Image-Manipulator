@@ -500,6 +500,45 @@ public:
 		cout << "Flipping Vertically....." << endl << endl;
 		destination.close();
 	}
+
+	void rotate90(string input_file, string output_file)
+	{
+		int temp = _width;
+		_width = _height;
+		_height = _width;
+		open(input_file);
+		ofstream destination;
+		destination.open(output_file);
+
+		destination << _format << endl;
+		destination << _width << " " << _height << endl;
+		destination << _color_depth << endl;
+
+		vector<vector<Pixel>> copy_vect = _rgb_data;
+		
+		
+		for (int i = 0; i < _height; i++)
+		{
+			vector<Pixel> temp_vect;
+			for (int j = _width - 1; j >= 0; j--)
+			{
+				temp_vect.push_back(copy_vect[j][i]);
+			}
+			_rgb_data[i] = temp_vect;
+		}
+
+		for (int i = 0; i < _rgb_data.size(); i++)
+		{
+			for (int j = 0; j < _rgb_data[i].size(); j++)
+			{
+				destination << _rgb_data[i][j] << " ";
+			}
+			destination << endl;
+		}
+
+		cout << "Rotating 90 Degrees....." << endl << endl;
+		destination.close();
+	}
 };
 
 

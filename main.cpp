@@ -115,6 +115,7 @@ int main(int argc, char* argv[])
 				break;
 
 			case 14:
+				doc.rotate90(input_file, output_file);
 				break;
 
 			default:
@@ -190,6 +191,7 @@ int main(int argc, char* argv[])
 						break;
 
 					case 14:
+						newdoc.rotate90(input_file, output_file);
 						break;
 
 					default:
