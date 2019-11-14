@@ -535,6 +535,53 @@ public:
 		destination.close();
 	}
 
+	void blurImage(string input_file, string output_file)
+	{
+		open(input_file);
+		ofstream destination;
+		destination.open(output_file);
+
+		destination << _format << endl;
+		destination << _width << " " << _height << endl;
+		destination << _color_depth << endl;
+
+		vector<vector<Pixel>> copy_vect = _rgb_data;
+
+		for (int i = 0; i < _rgb_data.size(); i++)
+		{
+			for (int j = 0; j < _rgb_data[i].size(); j++)
+			{
+				if (i == 0)
+				{
+					int average_red = (copy_vect[i][j].getRed() + copy_vect[i][j + 1].getRed()) / 2;
+					int average_green = (copy_vect[i][j].getGreen() + copy_vect[i][j + 1].getGreen()) / 2;
+					int average_blue = (copy_vect[i][j].getBlue() + copy_vect[i][j + 1].getBlue()) / 2;
+					_rgb_data[i][j].setRed(average_red);
+					_rgb_data[i][j].setGreen(average_green);
+					_rgb_data[i][j].setBlue(average_blue);
+				}
+				else if (i + 1 == _width)
+				{
+					int average_red = (copy_vect[i][j].getRed() + copy_vect[i][j - 1].getRed()) / 2;
+					int average_green = (copy_vect[i][j].getGreen() + copy_vect[i][j - 1].getGreen()) / 2;
+					int average_blue = (copy_vect[i][j].getBlue() + copy_vect[i][j - 1].getBlue()) / 2;
+					_rgb_data[i][j].setRed(average_red);
+					_rgb_data[i][j].setGreen(average_green);
+					_rgb_data[i][j].setBlue(average_blue);
+				}
+				else
+				{
+					int average_red = (copy_vect[i][j].getRed() + copy_vect[i][j + 1].getRed() + copy_vect[i][j - 1].getRed()) / 3;
+					int average_green = (copy_vect[i][j].getGreen() + copy_vect[i][j + 1].getGreen() + copy_vect[i][j - 1].getGreen()) / 3;
+					int average_blue = (copy_vect[i][j].getBlue() + copy_vect[i][j + 1].getBlue() + copy_vect[i][j - 1].getBlue()) / 3;
+					_rgb_data[i][j].setRed(average_red);
+					_rgb_data[i][j].setGreen(average_green);
+					_rgb_data[i][j].setBlue(average_blue);
+				}
+			}
+		}
+	}
+
 	void rotate90(string input_file, string output_file)
 	{
 		int temp = _width;
