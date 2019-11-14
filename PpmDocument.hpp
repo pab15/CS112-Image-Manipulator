@@ -545,35 +545,48 @@ public:
 		destination << _width << " " << _height << endl;
 		destination << _color_depth << endl;
 
-		vector<vector<Pixel>> copy_vect = _rgb_data;
-
 		for (int i = 0; i < _rgb_data.size(); i++)
 		{
 			for (int j = 0; j < _rgb_data[i].size(); j++)
 			{
-				if (i == 0)
+				if (j == 0 && i == 0)
 				{
-					int average_red = (copy_vect[i][j].getRed() + copy_vect[i][j + 1].getRed()) / 2;
-					int average_green = (copy_vect[i][j].getGreen() + copy_vect[i][j + 1].getGreen()) / 2;
-					int average_blue = (copy_vect[i][j].getBlue() + copy_vect[i][j + 1].getBlue()) / 2;
-					_rgb_data[i][j].setRed(average_red);
-					_rgb_data[i][j].setGreen(average_green);
-					_rgb_data[i][j].setBlue(average_blue);
+					int average_red = (_rgb_data[i][j].getRed() + _rgb_data[i][j + 1].getRed()) / 2;
+					int average_green = (_rgb_data[i][j].getGreen() + _rgb_data[i][j + 1].getGreen()) / 2;
+					int average_blue = (_rgb_data[i][j].getBlue() + _rgb_data[i][j + 1].getBlue()) / 2;
+					int new_avg_red = (average_red + _rgb_data[i + 1][j].getRed()) / 2;
+					int new_avg_green = (average_green + _rgb_data[i + 1][j].getGreen()) / 2;
+					int new_avg_blue = (average_blue + _rgb_data[i + 1][j].getBlue()) / 2;
+					_rgb_data[i][j].setRed(new_avg_red);
+					_rgb_data[i][j].setGreen(new_avg_green);
+					_rgb_data[i][j].setBlue(new_avg_blue);
+				}
+				else if (i == 0 && j + 1 < _width)
+				{
+					int average_red = (_rgb_data[i][j].getRed() + _rgb_data[i][j + 1].getRed() + _rgb_data[i][j - 1].getRed()) / 3;
+					int average_green = (_rgb_data[i][j].getGreen() + _rgb_data[i][j + 1].getGreen() + _rgb_data[i][j - 1].getGreen()) / 3;
+					int average_blue = (_rgb_data[i][j].getBlue() + _rgb_data[i][j + 1].getBlue() + _rgb_data[i][j - 1].getBlue()) / 3;
+					int new_avg_red = (average_red + _rgb_data[i + 1][j].getRed()) / 2;
+					int new_avg_green = (average_green + _rgb_data[i + 1][j].getGreen()) / 2;
+					int new_avg_blue = (average_blue + _rgb_data[i + 1][j].getBlue()) / 2;
+					_rgb_data[i][j].setRed(new_avg_red);
+					_rgb_data[i][j].setGreen(new_avg_green);
+					_rgb_data[i][j].setBlue(new_avg_blue);
 				}
 				else if (i + 1 >= _width)
 				{
-					int average_red = (copy_vect[i][j].getRed() + copy_vect[i][j - 1].getRed()) / 2;
-					int average_green = (copy_vect[i][j].getGreen() + copy_vect[i][j - 1].getGreen()) / 2;
-					int average_blue = (copy_vect[i][j].getBlue() + copy_vect[i][j - 1].getBlue()) / 2;
+					int average_red = (_rgb_data[i][j].getRed() + _rgb_data[i][j - 1].getRed()) / 2;
+					int average_green = (_rgb_data[i][j].getGreen() + _rgb_data[i][j - 1].getGreen()) / 2;
+					int average_blue = (_rgb_data[i][j].getBlue() + _rgb_data[i][j - 1].getBlue()) / 2;
 					_rgb_data[i][j].setRed(average_red);
 					_rgb_data[i][j].setGreen(average_green);
 					_rgb_data[i][j].setBlue(average_blue);
 				}
 				else
 				{
-					int average_red = (copy_vect[i][j].getRed() + copy_vect[i][j + 1].getRed() + copy_vect[i][j - 1].getRed()) / 3;
-					int average_green = (copy_vect[i][j].getGreen() + copy_vect[i][j + 1].getGreen() + copy_vect[i][j - 1].getGreen()) / 3;
-					int average_blue = (copy_vect[i][j].getBlue() + copy_vect[i][j + 1].getBlue() + copy_vect[i][j - 1].getBlue()) / 3;
+					int average_red = (_rgb_data[i][j].getRed() + _rgb_data[i][j + 1].getRed() + _rgb_data[i][j - 1].getRed()) / 3;
+					int average_green = (_rgb_data[i][j].getGreen() + _rgb_data[i][j + 1].getGreen() + _rgb_data[i][j - 1].getGreen()) / 3;
+					int average_blue = (_rgb_data[i][j].getBlue() + _rgb_data[i][j + 1].getBlue() + _rgb_data[i][j - 1].getBlue()) / 3;
 					_rgb_data[i][j].setRed(average_red);
 					_rgb_data[i][j].setGreen(average_green);
 					_rgb_data[i][j].setBlue(average_blue);
