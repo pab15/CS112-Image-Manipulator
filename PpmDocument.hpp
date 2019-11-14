@@ -560,7 +560,7 @@ public:
 					_rgb_data[i][j].setGreen(average_green);
 					_rgb_data[i][j].setBlue(average_blue);
 				}
-				else if (i + 1 == _width)
+				else if (i + 1 >= _width)
 				{
 					int average_red = (copy_vect[i][j].getRed() + copy_vect[i][j - 1].getRed()) / 2;
 					int average_green = (copy_vect[i][j].getGreen() + copy_vect[i][j - 1].getGreen()) / 2;
