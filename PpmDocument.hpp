@@ -551,48 +551,128 @@ public:
 			{
 				if (j == 0 && i == 0)
 				{
-					int average_red = (_rgb_data[i][j].getRed() + _rgb_data[i][j + 1].getRed()) / 2;
-					int average_green = (_rgb_data[i][j].getGreen() + _rgb_data[i][j + 1].getGreen()) / 2;
-					int average_blue = (_rgb_data[i][j].getBlue() + _rgb_data[i][j + 1].getBlue()) / 2;
-					int new_avg_red = (average_red + _rgb_data[i + 1][j].getRed()) / 2;
-					int new_avg_green = (average_green + _rgb_data[i + 1][j].getGreen()) / 2;
-					int new_avg_blue = (average_blue + _rgb_data[i + 1][j].getBlue()) / 2;
+					int average_red = (_rgb_data[i][j].getRed() + _rgb_data[i][(j + 1)].getRed()) / 2;
+					int average_green = (_rgb_data[i][j].getGreen() + _rgb_data[i][(j + 1)].getGreen()) / 2;
+					int average_blue = (_rgb_data[i][j].getBlue() + _rgb_data[i][(j + 1)].getBlue()) / 2;
+					int new_avg_red = (average_red + _rgb_data[(i + 1)][j].getRed()) / 2;
+					int new_avg_green = (average_green + _rgb_data[(i + 1)][j].getGreen()) / 2;
+					int new_avg_blue = (average_blue + _rgb_data[(i + 1)][j].getBlue()) / 2;
 					_rgb_data[i][j].setRed(new_avg_red);
 					_rgb_data[i][j].setGreen(new_avg_green);
 					_rgb_data[i][j].setBlue(new_avg_blue);
+					destination << _rgb_data[i][j] << " ";
 				}
-				else if (i == 0 && j + 1 < _width)
+				else if (i == 0 && (j + 1) == _rgb_data[i].size())
 				{
-					int average_red = (_rgb_data[i][j].getRed() + _rgb_data[i][j + 1].getRed() + _rgb_data[i][j - 1].getRed()) / 3;
-					int average_green = (_rgb_data[i][j].getGreen() + _rgb_data[i][j + 1].getGreen() + _rgb_data[i][j - 1].getGreen()) / 3;
-					int average_blue = (_rgb_data[i][j].getBlue() + _rgb_data[i][j + 1].getBlue() + _rgb_data[i][j - 1].getBlue()) / 3;
-					int new_avg_red = (average_red + _rgb_data[i + 1][j].getRed()) / 2;
-					int new_avg_green = (average_green + _rgb_data[i + 1][j].getGreen()) / 2;
-					int new_avg_blue = (average_blue + _rgb_data[i + 1][j].getBlue()) / 2;
+					int average_red = (_rgb_data[i][j].getRed() + _rgb_data[i][(j - 1)].getRed())/ 2;
+					int average_green = (_rgb_data[i][j].getGreen() + _rgb_data[i][(j - 1)].getGreen()) / 2;
+					int average_blue = (_rgb_data[i][j].getBlue() + _rgb_data[i][(j - 1)].getBlue()) / 2;
+					int new_avg_red = (average_red + _rgb_data[(i + 1)][j].getRed()) / 2;
+					int new_avg_green = (average_green + _rgb_data[(i + 1)][j].getGreen()) / 2;
+					int new_avg_blue = (average_blue + _rgb_data[(i + 1)][j].getBlue()) / 2;
+					_rgb_data[i][j].setRed(new_avg_red);
+					_rgb_data[i][j].setGreen(new_avg_green);
+					_rgb_data[i][j].setBlue(new_avg_blue); 
+					destination << _rgb_data[i][j] << " ";
+				}
+				else if (i == 0)
+				{
+					int average_red = (_rgb_data[i][j].getRed() + _rgb_data[i][(j + 1)].getRed()) / 2;
+					int average_green = (_rgb_data[i][j].getGreen() + _rgb_data[i][(j + 1)].getGreen()) / 2;
+					int average_blue = (_rgb_data[i][j].getBlue() + _rgb_data[i][(j + 1)].getBlue()) / 2;
+					int new_avg_red = (average_red + _rgb_data[(i + 1)][j].getRed()) / 2;
+					int new_avg_green = (average_green + _rgb_data[(i + 1)][j].getGreen()) / 2;
+					int new_avg_blue = (average_blue + _rgb_data[(i + 1)][j].getBlue()) / 2;
 					_rgb_data[i][j].setRed(new_avg_red);
 					_rgb_data[i][j].setGreen(new_avg_green);
 					_rgb_data[i][j].setBlue(new_avg_blue);
+					destination << _rgb_data[i][j] << " ";
 				}
-				else if (i + 1 >= _width)
+				else if ((i + 1) == _height && j == 0)
 				{
-					int average_red = (_rgb_data[i][j].getRed() + _rgb_data[i][j - 1].getRed()) / 2;
-					int average_green = (_rgb_data[i][j].getGreen() + _rgb_data[i][j - 1].getGreen()) / 2;
-					int average_blue = (_rgb_data[i][j].getBlue() + _rgb_data[i][j - 1].getBlue()) / 2;
-					_rgb_data[i][j].setRed(average_red);
-					_rgb_data[i][j].setGreen(average_green);
-					_rgb_data[i][j].setBlue(average_blue);
+					int average_red = (_rgb_data[i][j].getRed() + _rgb_data[i][(j + 1)].getRed())/ 2;
+					int average_green = (_rgb_data[i][j].getGreen() + _rgb_data[i][(j + 1)].getGreen()) / 2;
+					int average_blue = (_rgb_data[i][j].getBlue() + _rgb_data[i][(j + 1)].getBlue()) / 2;
+					int new_avg_red = (average_red + _rgb_data[(i - 1)][j].getRed()) / 2;
+					int new_avg_green = (average_green + _rgb_data[(i - 1)][j].getGreen()) / 2;
+					int new_avg_blue = (average_blue + _rgb_data[(i - 1)][j].getBlue()) / 2;
+					_rgb_data[i][j].setRed(new_avg_red);
+					_rgb_data[i][j].setGreen(new_avg_green);
+					_rgb_data[i][j].setBlue(new_avg_blue);
+					destination << _rgb_data[i][j] << " ";
+				}
+				else if ((i + 1) == _height && (j + 1) == _rgb_data[i].size())
+				{
+					int average_red = (_rgb_data[i][j].getRed() + _rgb_data[i][(j - 1)].getRed()) / 2;
+					int average_green = (_rgb_data[i][j].getGreen() + _rgb_data[i][(j - 1)].getGreen()) / 2;
+					int average_blue = (_rgb_data[i][j].getBlue() + _rgb_data[i][(j - 1)].getBlue()) / 2;
+					int new_avg_red = (average_red + _rgb_data[(i - 1)][j].getRed()) / 2;
+					int new_avg_green = (average_green + _rgb_data[(i - 1)][j].getGreen()) / 2;
+					int new_avg_blue = (average_blue + _rgb_data[(i - 1)][j].getBlue()) / 2;
+					_rgb_data[i][j].setRed(new_avg_red);
+					_rgb_data[i][j].setGreen(new_avg_green);
+					_rgb_data[i][j].setBlue(new_avg_blue);
+					destination << _rgb_data[i][j] << " ";
+				}
+				else if ((i + 1) == _height)
+				{
+					int average_red = (_rgb_data[i][j].getRed() + _rgb_data[i][(j - 1)].getRed() + _rgb_data[i][(j + 1)].getRed()) / 3;
+					int average_green = (_rgb_data[i][j].getGreen() + _rgb_data[i][(j - 1)].getGreen() + _rgb_data[i][(j + 1)].getGreen()) / 3;
+					int average_blue = (_rgb_data[i][j].getBlue() + _rgb_data[i][(j - 1)].getBlue() + _rgb_data[i][(j + 1)].getBlue()) / 3;
+					int new_avg_red = (average_red + _rgb_data[(i - 1)][j].getRed()) / 2;
+					int new_avg_green = (average_green + _rgb_data[(i - 1)][j].getGreen()) / 2;
+					int new_avg_blue = (average_blue + _rgb_data[(i - 1)][j].getBlue()) / 2;
+					_rgb_data[i][j].setRed(new_avg_red);
+					_rgb_data[i][j].setGreen(new_avg_green);
+					_rgb_data[i][j].setBlue(new_avg_blue);
+					destination << _rgb_data[i][j] << " ";
+				}
+				else if (j == 0)
+				{
+					int average_red = (_rgb_data[i][j].getRed() + _rgb_data[i][(j + 1)].getRed()) / 2;
+					int average_green = (_rgb_data[i][j].getGreen() + _rgb_data[i][(j + 1)].getGreen()) / 2;
+					int average_blue = (_rgb_data[i][j].getBlue() + _rgb_data[i][(j + 1)].getBlue()) / 2;
+					int new_avg_red = (average_red + _rgb_data[(i - 1)][j].getRed() + _rgb_data[(i + 1)][j].getRed()) / 3;
+					int new_avg_green = (average_green + _rgb_data[(i - 1)][j].getGreen() + _rgb_data[(i + 1)][j].getGreen()) / 3;
+					int new_avg_blue = (average_blue + _rgb_data[(i - 1)][j].getBlue() + _rgb_data[(i + 1)][j].getBlue()) / 3;
+					_rgb_data[i][j].setRed(new_avg_red);
+					_rgb_data[i][j].setGreen(new_avg_green);
+					_rgb_data[i][j].setBlue(new_avg_blue);
+					destination << _rgb_data[i][j] << " ";
+				}
+				else if ((j + 1) == _width)
+				{
+					int average_red = (_rgb_data[i][j].getRed() + _rgb_data[i][(j - 1)].getRed()) / 2;
+					int average_green = (_rgb_data[i][j].getGreen() + _rgb_data[i][(j - 1)].getGreen()) / 2;
+					int average_blue = (_rgb_data[i][j].getBlue() + _rgb_data[i][(j - 1)].getBlue()) / 2;
+					int new_avg_red = (average_red + _rgb_data[(i - 1)][j].getRed() + _rgb_data[(i + 1)][j].getRed()) / 3;
+					int new_avg_green = (average_green + _rgb_data[(i - 1)][j].getGreen() + _rgb_data[(i + 1)][j].getGreen()) / 3;
+					int new_avg_blue = (average_blue + _rgb_data[(i - 1)][j].getBlue() + _rgb_data[(i + 1)][j].getBlue()) / 3;
+					_rgb_data[i][j].setRed(new_avg_red);
+					_rgb_data[i][j].setGreen(new_avg_green);
+					_rgb_data[i][j].setBlue(new_avg_blue);
+					destination << _rgb_data[i][j] << " ";
 				}
 				else
 				{
-					int average_red = (_rgb_data[i][j].getRed() + _rgb_data[i][j + 1].getRed() + _rgb_data[i][j - 1].getRed()) / 3;
-					int average_green = (_rgb_data[i][j].getGreen() + _rgb_data[i][j + 1].getGreen() + _rgb_data[i][j - 1].getGreen()) / 3;
-					int average_blue = (_rgb_data[i][j].getBlue() + _rgb_data[i][j + 1].getBlue() + _rgb_data[i][j - 1].getBlue()) / 3;
-					_rgb_data[i][j].setRed(average_red);
-					_rgb_data[i][j].setGreen(average_green);
-					_rgb_data[i][j].setBlue(average_blue);
+					int average_red = (_rgb_data[i][j].getRed() + _rgb_data[i][(j - 1)].getRed() + _rgb_data[i][(j + 1)].getRed()) / 3;
+					int average_green = (_rgb_data[i][j].getGreen() + _rgb_data[i][(j - 1)].getGreen() + _rgb_data[i][(j + 1)].getGreen()) / 3;
+					int average_blue = (_rgb_data[i][j].getBlue() + _rgb_data[i][(j - 1)].getBlue() + _rgb_data[i][(j + 1)].getBlue()) / 3;
+					int new_avg_red = (average_red + _rgb_data[(i - 1)][j].getRed() + _rgb_data[(i + 1)][j].getRed()) / 3;
+					int new_avg_green = (average_green + _rgb_data[(i - 1)][j].getGreen() + _rgb_data[(i + 1)][j].getGreen()) / 3;
+					int new_avg_blue = (average_blue + _rgb_data[(i - 1)][j].getBlue() + _rgb_data[(i + 1)][j].getBlue()) / 3;
+					_rgb_data[i][j].setRed(new_avg_red);
+					_rgb_data[i][j].setGreen(new_avg_green);
+					_rgb_data[i][j].setBlue(new_avg_blue);
+					destination << _rgb_data[i][j] << " ";
 				}
 			}
+			destination << endl;
 		}
+
+
+		cout << "Blurring Image....." << endl << endl;
+		destination.close();
 	}
 
 	void rotate90(string input_file, string output_file)

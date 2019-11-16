@@ -109,6 +109,7 @@ int main(int argc, char* argv[])
 				break;
 
 			case 12:
+				doc.blurImage(input_file, output_file);
 				break;
 
 			case 13:
@@ -186,6 +187,7 @@ int main(int argc, char* argv[])
 						break;
 
 					case 12:
+						newdoc.blurImage(input_file, output_file);
 						break;
 
 					case 13:
